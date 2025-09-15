@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Elementsist Course Sales Page</title>
+  <style>
+    /* Mobile-first styles for layout and brand colors */
+    body { margin: 0; font-family: Helvetica, Arial, sans-serif; color: #333; background: #fff; }
+    header.hero {
+      background-color: #0d1e32; /* Dark Midnight background */
+      color: #ffffff; /* white text for contrast */
+      text-align: center; padding: 2em 1em;
+      position: relative;
+    }
+    header.hero h1 { font-family: 'Ibarra Real Nova', serif; font-size: 1.8em; margin: 0 0 0.5em; }
+    header.hero p.subtitle { font-size: 1.1em; margin: 0 0 1em; }
+    .cta-button {
+      background-color: #d29230; /* Goldenrod CTA */
+      color: #000; font-weight: bold;
+      padding: 0.8em 1.2em; border: none; border-radius: 4px;
+      font-size: 1em; cursor: pointer;
+    }
+    /* Sticky footer CTA bar */
+    .sticky-cta { 
+      display: none; /* shown via script when scrolling, for simplicity hidden by default */
+      position: fixed; bottom: 0; width: 100%;
+      background: #d29230; text-align: center; padding: 0.7em;
+    }
+    .sticky-cta .cta-button { 
+      background: #000; color: #fff; /* inverted color for contrast in sticky bar */ 
+      padding: 0.7em 1em; font-size: 1em;
+    }
+    section { padding: 1.5em 1em; }
+    section h2 { font-size: 1.4em; margin: 0 0 0.5em; }
+    section h3 { font-size: 1.2em; margin: 1em 0 0.3em; }
+    ul { margin: 0.5em 0; padding-left: 1.2em; }
+    li { margin: 0.3em 0; }
+    /* Responsive media */
+    iframe, img { max-width: 100%; height: auto; }
+    /* FAQ accordion (basic) */
+    .faq-item { border-top: 1px solid #ccc; padding: 0.5em 0; }
+    .faq-item h3 { font-size: 1.1em; margin: 0; cursor: pointer; }
+    .faq-item p { display: none; margin: 0.5em 0 0; }
+    /* (In a real page, we'd add a script to toggle FAQ answers on tap) */
+  </style>
+</head>
+<body>
+
+  <!-- Hero Section -->
+  <header class="hero">
+    <h1>Transform Your Business in 8 Weeks</h1>
+    <p class="subtitle">An online course to boost revenue, automate growth, and free up your time.</p>
+    <button class="cta-button">Enroll Now for $197</button>
+  </header>
+
+  <!-- Trust Logos / Social Proof Bar -->
+  <section style="padding: 1em 1em; text-align:center; background:#f8f8f8;">
+    <p><strong>Trusted by 5,000+ entrepreneurs</strong> – Featured in <img src="logo1.png" alt="Forbes" /> <img src="logo2.png" alt="Inc" /></p>
+  </section>
+
+  <!-- Pain Points -->
+  <section>
+    <h2>Are you struggling with...</h2>
+    <ul>
+      <li>Inconsistent clients or sales each month?</li>
+      <li>Working long hours **in** your business with no time to grow it?</li>
+      <li>Not knowing the next step to scale revenue?</li>
+    </ul>
+    <p>If so, this course is made for you. Learn to overcome these challenges with proven strategies.</p>
+  </section>
+
+  <!-- Solution Introduction -->
+  <section>
+    <h2>Introducing: <em>The Business Growth Masterclass</em></h2>
+    <p>A step-by-step program that guides you to build a profitable, self-sustaining business. Whether you're a coach, agency owner, or e-commerce entrepreneur, this <strong>8-week course</strong> will give you the blueprint to scale up and reclaim your freedom.</p>
+  </section>
+
+  <!-- Video Preview -->
+  <section>
+    <h2>Course Preview</h2>
+    <iframe width="560" height="315" src="https://www.youtube.com/embed/VIDEOID" title="Course Preview Video" frameborder="0" allowfullscreen></iframe>
+  </section>
+
+  <!-- Key Benefits / Outcomes -->
+  <section>
+    <h2>What You'll Achieve</h2>
+    <ul>
+      <li><strong>Consistent Clients & Sales:</strong> Fill your pipeline with high-quality leads using our marketing system.</li>
+      <li><strong>Work Fewer Hours:</strong> Implement automation tools to run your business 24/7, even when you sleep.</li>
+      <li><strong>Confident Growth Plan:</strong> Follow a clear roadmap from $0 to 6-figures and beyond.</li>
+    </ul>
+  </section>
+
+  <!-- Offer Stack: Modules & Bonuses -->
+  <section>
+    <h2>What's Included</h2>
+    <ul>
+      <li><strong>8 Video Modules</strong> – on demand lessons packed with strategies and examples.</li>
+      <li><strong>5 Live Group Coaching Calls</strong> – get personalized help and your questions answered.</li>
+      <li><strong>Exclusive Templates & Tools</strong> – ready-to-use email scripts, funnel blueprints, and more.</li>
+      <li><strong>Private Community Access</strong> – join a network of entrepreneurs for support and collaboration.</li>
+    </ul>
+    <p><em>Bonus:</em> 1-on-1 coaching session for the first 20 enrollees <strong>(act fast!)</strong></p>
+  </section>
+
+  <!-- Pricing / CTA -->
+  <section style="text-align:center; background:#fafafa;">
+    <h2>Enroll Today</h2>
+    <p><del>$397</del> <strong>$197</strong> for full access</p>
+    <p><small>One-time payment, lifetime access. 30-day money-back guarantee.</small></p>
+    <button class="cta-button">✅ Yes, I Want This Course!</button>
+    <p><small>100% Secure Checkout • Accepted: <img src="visa.png" alt="Visa" /> <img src="mc.png" alt="MasterCard" /></small></p>
+  </section>
+
+  <!-- Testimonials -->
+  <section>
+    <h2>What Others Are Saying</h2>
+    <p><em>"This course changed my business! I went from struggling to fully booked in 2 months."</em> – Jane D., Coach</p>
+    <p><em>"A game-changer. Our agency doubled our client leads after implementing just a few lessons."</em> – John S., Agency Owner</p>
+    <p><em>"Simply brilliant. I wish I had this course when I started my e-commerce store."</em> – Priya K., E-com Entrepreneur</p>
+  </section>
+
+  <!-- FAQ -->
+  <section>
+    <h2>Frequently Asked Questions</h2>
+    <div class="faq-item">
+      <h3>❓ Is this course suitable for my type of business?</h3>
+      <p>Absolutely. The principles taught apply to solopreneurs, coaches, service providers, creative agencies, and e-commerce owners. We include examples for each, so you can see exactly how to implement in your context.</p>
+    </div>
+    <div class="faq-item">
+      <h3>❓ How much time will I need per week?</h3>
+      <p>Plan on 3-4 hours per week to watch the videos and complete action steps. The content is broken into bite-sized lessons perfect for busy schedules.</p>
+    </div>
+    <div class="faq-item">
+      <h3>❓ What if I need extra help or have questions?</h3>
+      <p>You'll have access to our private community and the live group coaching calls to get support directly from the course creator and peers.</p>
+    </div>
+    <div class="faq-item">
+      <h3>❓ What if I am not satisfied with the course?</h3>
+      <p>We offer a 30-day money-back guarantee. If you complete the course and don't see value, we'll refund you – no questions asked.</p>
+    </div>
+  </section>
+
+  <!-- Lead Capture for Non-buyers -->
+  <section style="background:#0d1e32; color:#fff; text-align:center;">
+    <h2>Not Ready to Enroll Yet?</h2>
+    <p>Get a free <strong>Business Growth Toolkit</strong> and weekly tips – sign up below:</p>
+    <form action="#" method="post" style="margin:1em 0;">
+      <input type="email" name="email" placeholder="Your email address" required style="padding:0.5em; width: 80%; max-width:300px;" />
+      <button type="submit" style="padding:0.5em 1em; background:#d29230; border:none; color:#000; font-weight:bold;">Get the Free Toolkit</button>
+    </form>
+    <p><small>Your info is safe with us. Unsubscribe anytime.</small></p>
+  </section>
+
+  <!-- Footer -->
+  <footer style="text-align:center; padding:1em; background:#333; color:#fff;">
+    <p>&copy; 2025 Elementsist. All Rights Reserved.</p>
+    <p><small><a href="#" style="color:#fff;text-decoration:underline;">Privacy Policy</a> | <a href="#" style="color:#fff;text-decoration:underline;">Terms of Service</a></small></p>
+  </footer>
+
+  <!-- Sticky CTA that appears on scroll (simulated) -->
+  <div class="sticky-cta">
+    <button class="cta-button">Enroll Now - $197</button>
+  </div>
+
+</body>
+</html>

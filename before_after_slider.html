@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Before-After Image Slider</title>
+  <style>
+    :root {
+      --goldenrod: #d29230;
+    }
+    .comparison-container {
+      position: relative;
+      width: 100%;
+      max-width: 800px;
+      margin: 40px auto;
+    }
+    .before-after-container {
+      position: relative;
+      width: 100%;
+      height: 400px;
+      overflow: hidden;
+    }
+    /* Both images fill the container */
+    .before, .after {
+      position: absolute;
+      top: 0;
+      left: 0;
+      height: 100%;
+      width: 100%;
+    }
+    /* The after image is the static background */
+    .after {
+      z-index: 1;
+    }
+    /* The before image is on top and will be clipped */
+    .before {
+      z-index: 2;
+      overflow: hidden;
+      clip-path: inset(0 50% 0 0); /* Initially show the left 50% */
+    }
+    .before img, .after img {
+      position: absolute;
+      top: 0;
+      left: 0;
+      height: 100%;
+      width: 100%;
+      object-fit: cover;
+    }
+    /* Slider styling */
+    .slider {
+      position: absolute;
+      top: 0;
+      width: 4px;
+      height: 100%;
+      background-color: var(--goldenrod);
+      left: 50%;
+      z-index: 3;
+      cursor: ew-resize;
+    }
+    .slider-button {
+      position: absolute;
+      width: 40px;
+      height: 40px;
+      background-color: var(--goldenrod);
+      border-radius: 50%;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      z-index: 4;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: ew-resize;
+    }
+    .slider-button:after {
+      content: "↔";
+      color: white;
+      font-weight: bold;
+    }
+    /* Labels */
+    .before-label, .after-label {
+      position: absolute;
+      top: 20px;
+      color: white;
+      background-color: rgba(0, 0, 0, 0.7);
+      padding: 5px 10px;
+      border-radius: 4px;
+      font-family: 'Work Sans', sans-serif;
+      font-weight: bold;
+      font-size: 14px;
+      z-index: 5;
+    }
+    .before-label {
+      left: 20px;
+    }
+    .after-label {
+      right: 20px;
+    }
+  </style>
+</head>
+<body>
+  <div class="comparison-container">
+    <div class="before-after-container">
+      <!-- Background after image -->
+      <div class="after">
+        <div class="after-label">STRATEGIC</div>
+        <img src="new-lallabee.png" alt="After Elementsist transformed the brand" />
+      </div>
+      <!-- Foreground before image that will be clipped -->
+      <div class="before">
+        <div class="before-label">AMATEUR</div>
+        <img src="old-lallabee.png" alt="Before Elementsist transformed the brand" />
+      </div>
+      <!-- Slider handle -->
+      <div class="slider">
+        <div class="slider-button"></div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      const container = document.querySelector('.before-after-container');
+      const slider = container.querySelector('.slider');
+      const sliderButton = container.querySelector('.slider-button');
+      const beforeDiv = container.querySelector('.before');
+
+      function moveSlider(e) {
+        let clientX;
+        if (e.type.startsWith('touch')) {
+          clientX = e.touches[0].clientX;
+        } else {
+          clientX = e.clientX;
+        }
+        const containerRect = container.getBoundingClientRect();
+        let percent = ((clientX - containerRect.left) / containerRect.width) * 100;
+        percent = Math.max(0, Math.min(100, percent));
+        // Instead of resizing, we adjust the clip-path to reveal only the desired portion.
+        beforeDiv.style.clipPath = `inset(0 ${100 - percent}% 0 0)`;
+        slider.style.left = percent + '%';
+      }
+
+      function startSlide(e) {
+        e.preventDefault();
+        document.addEventListener('mousemove', moveSlider);
+        document.addEventListener('touchmove', moveSlider);
+        document.addEventListener('mouseup', stopSlide);
+        document.addEventListener('touchend', stopSlide);
+      }
+
+      function stopSlide() {
+        document.removeEventListener('mousemove', moveSlider);
+        document.removeEventListener('touchmove', moveSlider);
+        document.removeEventListener('mouseup', stopSlide);
+        document.removeEventListener('touchend', stopSlide);
+      }
+
+      // Attach event listeners for both mouse and touch events
+      slider.addEventListener('mousedown', startSlide);
+      sliderButton.addEventListener('mousedown', startSlide);
+      slider.addEventListener('touchstart', startSlide);
+      sliderButton.addEventListener('touchstart', startSlide);
+    });
+  </script>
+</body>
+</html>
+
+
+
+
+
+
+
+<style>
+    :root {
+      --goldenrod: #d29230;
+    }
+    /* Overall container takes up 100% of the available container width */
+    .comparison-container {
+      position: relative;
+      width: 100%;
+      margin: 5px auto;
+    }
+    .before-after-container {
+      position: relative;
+      width: 100%;
+      /* height: 400px; */
+      overflow: hidden;
+    }
+    /* Both images fill the container */
+    .before, .after {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+    }
+    /* The after image is the static background */
+    .after {
+      z-index: 1;
+    }
+    /* The before image is on top and will be clipped */
+    .before {
+      z-index: 2;
+      clip-path: inset(0 30% 0 0); /* Initially shows left 50% */
+    }
+    .before img, .after img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+    /* Slider styling */
+    .slider {
+      position: absolute;
+      top: 0;
+      width: 4px;
+      height: 100%;
+      background-color: var(--goldenrod);
+      left: 70%;
+      z-index: 3;
+      cursor: ew-resize;
+    }
+    .slider-button {
+      position: absolute;
+      width: 40px;
+      height: 40px;
+      background-color: var(--goldenrod);
+      border-radius: 50%;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      z-index: 4;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: ew-resize;
+    }
+    .slider-button:after {
+      content: "↔";
+      color: #fff;
+      font-weight: bold;
+    }
+    /* Labels */
+    .before-label, .after-label {
+      position: absolute;
+      top: 20px;      
+      background-color: #edeced;
+      padding: 5px 10px;
+      border-radius: 4px;
+      font-weight: bold;
+      font-size: 14px;
+      z-index: 5;
+    }
+    .before-label {
+      color: #F34C3F;
+      left: 20px;
+    }
+    .after-label {
+      color: #0d1e32;
+      right: 20px;
+    }
+  </style>
+  
+  <!-- Slider Container -->
+  <div class="comparison-container">
+    <div class="before-after-container">
+      <!-- Background after image -->
+      <div class="after">
+        <div class="after-label">After</div>
+        <img src="https://storage.googleapis.com/msgsndr/pbNvLcfbDPe2MxikIxGS/media/67ef0bad019de05d2a662f9e.png" alt="After Elementsist transformed the brand" />
+      </div>
+      <!-- Foreground before image that will be clipped -->
+      <div class="before">
+        <div class="before-label">Before</div>
+        <img src="https://storage.googleapis.com/msgsndr/pbNvLcfbDPe2MxikIxGS/media/67ef0bad9044f77927b189cb.png" alt="Before Elementsist transformed the brand" />
+      </div>
+      <!-- Slider handle -->
+      <div class="slider">
+        <div class="slider-button"></div>
+      </div>
+    </div>
+  </div>
+  
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      // Loop over each slider container on the page
+      document.querySelectorAll('.comparison-container').forEach(function(container) {
+        const sliderContainer = container.querySelector('.before-after-container');
+        const slider = container.querySelector('.slider');
+        const sliderButton = container.querySelector('.slider-button');
+        const beforeDiv = container.querySelector('.before');
+  
+        // Function to move slider based on mouse or touch event
+        function moveSlider(e) {
+          let clientX;
+          if (e.type.startsWith('touch')) {
+            clientX = e.touches[0].clientX;
+          } else {
+            clientX = e.clientX;
+          }
+          const containerRect = sliderContainer.getBoundingClientRect();
+          let percent = ((clientX - containerRect.left) / containerRect.width) * 100;
+          percent = Math.max(0, Math.min(100, percent));
+          beforeDiv.style.clipPath = `inset(0 ${100 - percent}% 0 0)`;
+          slider.style.left = percent + '%';
+        }
+  
+        function startSlide(e) {
+          e.preventDefault();
+          document.addEventListener('mousemove', moveSlider);
+          document.addEventListener('touchmove', moveSlider);
+          document.addEventListener('mouseup', stopSlide);
+          document.addEventListener('touchend', stopSlide);
+        }
+  
+        function stopSlide() {
+          document.removeEventListener('mousemove', moveSlider);
+          document.removeEventListener('touchmove', moveSlider);
+          document.removeEventListener('mouseup', stopSlide);
+          document.removeEventListener('touchend', stopSlide);
+        }
+  
+        // Attach event listeners for both mouse and touch events, scoped to this container
+        slider.addEventListener('mousedown', startSlide);
+        sliderButton.addEventListener('mousedown', startSlide);
+        slider.addEventListener('touchstart', startSlide);
+        sliderButton.addEventListener('touchstart', startSlide);
+      });
+    });
+  </script>
+  

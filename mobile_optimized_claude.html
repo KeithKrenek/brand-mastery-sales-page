@@ -1,0 +1,936 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="description" content="Transform your business brand with our mobile-optimized Brand Alchemy course">
+    <title>Brand Alchemy Mastery - Mobile Optimized</title>
+    
+    <!-- Preload critical fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Ibarra+Real+Nova:wght@400;600&display=swap" rel="stylesheet">
+    
+    <style>
+        /* Mobile-First Critical CSS */
+        :root {
+            --primary-black: #000000;
+            --primary-white: #ffffff;
+            --primary-midnight: #0d1e32;
+            --secondary-gray: #edeced;
+            --secondary-gold: #d29230;
+            --gold-hover: #b87a25;
+            
+            --font-serif: 'Ibarra Real Nova', serif;
+            --font-sans: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            
+            --spacing-xs: 8px;
+            --spacing-sm: 16px;
+            --spacing-md: 24px;
+            --spacing-lg: 32px;
+            --spacing-xl: 48px;
+            
+            --border-radius: 8px;
+            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            --shadow: 0 4px 12px rgba(0,0,0,0.15);
+        }
+        
+        /* Reset and base styles optimized for mobile */
+        * {
+            box-sizing: border-box;
+            -webkit-tap-highlight-color: transparent;
+        }
+        
+        body {
+            font-family: var(--font-sans);
+            font-size: 16px;
+            line-height: 1.5;
+            color: var(--primary-black);
+            background-color: var(--primary-white);
+            margin: 0;
+            padding: 0;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+        
+        /* Typography optimized for mobile reading */
+        h1, h2, h3, h4 {
+            font-family: var(--font-serif);
+            font-weight: 600;
+            line-height: 1.2;
+            margin: 0 0 var(--spacing-sm) 0;
+        }
+        
+        h1 { font-size: clamp(24px, 6vw, 32px); }
+        h2 { font-size: clamp(20px, 5vw, 28px); }
+        h3 { font-size: clamp(18px, 4vw, 24px); }
+        
+        p {
+            margin: 0 0 var(--spacing-sm) 0;
+            line-height: 1.6;
+        }
+        
+        /* Container with mobile-optimized padding */
+        .container {
+            width: 100%;
+            padding: 0 var(--spacing-sm);
+            margin: 0 auto;
+            max-width: 480px;
+        }
+        
+        /* Mobile-first header */
+        .mobile-header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background-color: var(--primary-white);
+            border-bottom: 1px solid var(--secondary-gray);
+            z-index: 1000;
+            padding: var(--spacing-sm);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+        }
+        
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            font-family: var(--font-serif);
+            font-size: 20px;
+            font-weight: 600;
+            color: var(--primary-black);
+            text-decoration: none;
+        }
+        
+        .header-cta {
+            background-color: var(--secondary-gold);
+            color: var(--primary-white);
+            padding: var(--spacing-xs) var(--spacing-sm);
+            border-radius: var(--border-radius);
+            font-weight: 600;
+            font-size: 14px;
+            text-decoration: none;
+            transition: var(--transition);
+        }
+        
+        .header-cta:active {
+            background-color: var(--gold-hover);
+            transform: scale(0.98);
+        }
+        
+        /* Hero section optimized for mobile */
+        .hero {
+            background: linear-gradient(135deg, var(--primary-midnight) 0%, #1a2942 100%);
+            color: var(--primary-white);
+            padding: calc(60px + var(--spacing-xl)) var(--spacing-sm) var(--spacing-xl);
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grain" patternUnits="userSpaceOnUse" width="100" height="100"><circle cx="25" cy="25" r="1" fill="white" opacity="0.1"/><circle cx="75" cy="75" r="1" fill="white" opacity="0.1"/></pattern></defs><rect width="100" height="100" fill="url(%23grain)"/></svg>');
+            opacity: 0.3;
+        }
+        
+        .hero-content {
+            position: relative;
+            z-index: 1;
+        }
+        
+        .gold-accent {
+            background: linear-gradient(45deg, #f9d77f, #c79a3c);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+        
+        /* Mobile-optimized buttons */
+        .btn {
+            display: block;
+            width: 100%;
+            padding: var(--spacing-sm) var(--spacing-md);
+            background-color: var(--secondary-gold);
+            color: var(--primary-white);
+            border: none;
+            border-radius: var(--border-radius);
+            font-weight: 600;
+            font-size: 16px;
+            text-decoration: none;
+            text-align: center;
+            transition: var(--transition);
+            margin: var(--spacing-md) 0;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transition: left 0.5s;
+        }
+        
+        .btn:active::before {
+            left: 100%;
+        }
+        
+        .btn:active {
+            background-color: var(--gold-hover);
+            transform: scale(0.98);
+        }
+        
+        .btn-secondary {
+            background-color: transparent;
+            border: 2px solid var(--secondary-gold);
+            color: var(--secondary-gold);
+        }
+        
+        .btn-secondary:active {
+            background-color: rgba(210, 146, 48, 0.1);
+        }
+        
+        /* Mobile before/after slider */
+        .mobile-slider {
+            position: relative;
+            width: 100%;
+            height: 250px;
+            margin: var(--spacing-md) 0;
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            box-shadow: var(--shadow);
+        }
+        
+        .slider-container {
+            position: relative;
+            width: 100%;
+            height: 100%;
+        }
+        
+        .slider-image {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+        
+        .slider-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .slider-before {
+            z-index: 2;
+            clip-path: inset(0 30% 0 0);
+        }
+        
+        .slider-after {
+            z-index: 1;
+        }
+        
+        .slider-handle {
+            position: absolute;
+            top: 0;
+            left: 70%;
+            width: 3px;
+            height: 100%;
+            background-color: var(--secondary-gold);
+            z-index: 3;
+        }
+        
+        .slider-button {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 36px;
+            height: 36px;
+            background-color: var(--secondary-gold);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--primary-white);
+            font-weight: bold;
+            touch-action: none;
+            cursor: grab;
+        }
+        
+        .slider-button:active {
+            cursor: grabbing;
+        }
+        
+        .slider-label {
+            position: absolute;
+            top: var(--spacing-sm);
+            padding: var(--spacing-xs) var(--spacing-sm);
+            background-color: rgba(0,0,0,0.8);
+            color: var(--primary-white);
+            border-radius: 4px;
+            font-weight: 600;
+            font-size: 12px;
+            z-index: 4;
+        }
+        
+        .slider-label.before {
+            left: var(--spacing-sm);
+        }
+        
+        .slider-label.after {
+            right: var(--spacing-sm);
+        }
+        
+        /* Mobile-optimized sections */
+        .section {
+            padding: var(--spacing-xl) 0;
+        }
+        
+        .section-dark {
+            background-color: var(--primary-midnight);
+            color: var(--primary-white);
+        }
+        
+        .section-light {
+            background-color: var(--primary-white);
+            color: var(--primary-black);
+        }
+        
+        .section-gray {
+            background-color: var(--secondary-gray);
+            color: var(--primary-black);
+        }
+        
+        /* Mobile card design */
+        .mobile-card {
+            background-color: var(--primary-white);
+            border-radius: var(--border-radius);
+            padding: var(--spacing-md);
+            margin-bottom: var(--spacing-md);
+            box-shadow: var(--shadow);
+        }
+        
+        .card-icon {
+            width: 48px;
+            height: 48px;
+            background-color: rgba(210, 146, 48, 0.1);
+            border-radius: var(--border-radius);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: var(--spacing-sm);
+            font-size: 20px;
+            color: var(--secondary-gold);
+        }
+        
+        /* Mobile pricing */
+        .pricing-mobile {
+            background-color: var(--primary-white);
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow);
+            overflow: hidden;
+            margin: var(--spacing-md) 0;
+        }
+        
+        .pricing-header {
+            background-color: var(--primary-black);
+            color: var(--primary-white);
+            padding: var(--spacing-md);
+            text-align: center;
+        }
+        
+        .price-display {
+            margin: var(--spacing-sm) 0;
+        }
+        
+        .price-original {
+            text-decoration: line-through;
+            color: #888;
+            font-size: 18px;
+            margin-right: var(--spacing-xs);
+        }
+        
+        .price-current {
+            font-size: 36px;
+            font-weight: 600;
+            color: var(--secondary-gold);
+        }
+        
+        .pricing-body {
+            padding: var(--spacing-md);
+        }
+        
+        .feature-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        
+        .feature-list li {
+            padding: var(--spacing-xs) 0;
+            border-bottom: 1px solid var(--secondary-gray);
+            position: relative;
+            padding-left: var(--spacing-md);
+        }
+        
+        .feature-list li:last-child {
+            border-bottom: none;
+        }
+        
+        .feature-list li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: var(--secondary-gold);
+            font-weight: 600;
+        }
+        
+        /* Mobile testimonial */
+        .testimonial-mobile {
+            background-color: rgba(210, 146, 48, 0.05);
+            border-left: 4px solid var(--secondary-gold);
+            padding: var(--spacing-md);
+            margin: var(--spacing-md) 0;
+            border-radius: 0 var(--border-radius) var(--border-radius) 0;
+        }
+        
+        .testimonial-text {
+            font-style: italic;
+            margin-bottom: var(--spacing-sm);
+            line-height: 1.6;
+        }
+        
+        .testimonial-author {
+            font-weight: 600;
+            color: var(--secondary-gold);
+            text-align: right;
+        }
+        
+        /* Mobile FAQ */
+        .faq-mobile {
+            background-color: var(--primary-white);
+            border-radius: var(--border-radius);
+            margin-bottom: var(--spacing-sm);
+            box-shadow: var(--shadow);
+            overflow: hidden;
+        }
+        
+        .faq-question {
+            padding: var(--spacing-md);
+            background-color: #f9f9f9;
+            font-weight: 600;
+            cursor: pointer;
+            position: relative;
+            user-select: none;
+        }
+        
+        .faq-question::after {
+            content: '+';
+            position: absolute;
+            right: var(--spacing-md);
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 20px;
+            color: var(--secondary-gold);
+            transition: var(--transition);
+        }
+        
+        .faq-question.active::after {
+            content: '−';
+            transform: translateY(-50%) rotate(180deg);
+        }
+        
+        .faq-answer {
+            padding: 0 var(--spacing-md);
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease, padding 0.3s ease;
+        }
+        
+        .faq-answer.show {
+            padding: var(--spacing-md);
+            max-height: 300px;
+        }
+        
+        /* Sticky bottom CTA */
+        .sticky-cta {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background-color: var(--primary-white);
+            border-top: 1px solid var(--secondary-gray);
+            padding: var(--spacing-sm);
+            z-index: 999;
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+        }
+        
+        .sticky-cta .btn {
+            margin: 0;
+        }
+        
+        /* Progress indicator */
+        .progress-indicator {
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 3px;
+            background-color: var(--secondary-gold);
+            z-index: 1001;
+            transition: width 0.3s ease;
+        }
+        
+        /* Loading optimization */
+        img {
+            loading: lazy;
+        }
+        
+        /* Accessibility improvements */
+        @media (prefers-reduced-motion: reduce) {
+            *,
+            *::before,
+            *::after {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+            }
+        }
+        
+        /* Dark mode support */
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --primary-black: #ffffff;
+                --primary-white: #1a1a1a;
+                --secondary-gray: #2a2a2a;
+            }
+        }
+        
+        /* Larger screens adaptation */
+        @media (min-width: 481px) {
+            .container {
+                max-width: 600px;
+                padding: 0 var(--spacing-md);
+            }
+            
+            .mobile-slider {
+                height: 300px;
+            }
+        }
+        
+        @media (min-width: 768px) {
+            .container {
+                max-width: 768px;
+                padding: 0 var(--spacing-lg);
+            }
+            
+            .btn {
+                display: inline-block;
+                width: auto;
+                min-width: 200px;
+            }
+            
+            .sticky-cta {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Progress Indicator -->
+    <div class="progress-indicator" id="progressBar"></div>
+    
+    <!-- Mobile Header -->
+    <header class="mobile-header">
+        <div class="header-content">
+            <a href="#" class="logo">Elementsist</a>
+            <a href="#pricing" class="header-cta">Get Started</a>
+        </div>
+    </header>
+    
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <h1>Transform Your <span class="gold-accent">Invisible</span> Business Into a <span class="gold-accent">Magnetic</span> Brand</h1>
+                <p>Get the same brand strategy that agencies charge $20,000 for — delivered in just 3 hours through our AI-powered system.</p>
+                <a href="#pricing" class="btn">Transform My Brand - $197</a>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Before/After Demo -->
+    <section class="section section-light">
+        <div class="container">
+            <h2 style="text-align: center;">See the Transformation</h2>
+            <div class="mobile-slider" id="mobileSlider">
+                <div class="slider-container">
+                    <div class="slider-image slider-after">
+                        <img src="https://via.placeholder.com/400x250/d29230/ffffff?text=STRATEGIC" alt="After transformation" loading="eager">
+                        <div class="slider-label after">AFTER</div>
+                    </div>
+                    <div class="slider-image slider-before">
+                        <img src="https://via.placeholder.com/400x250/666666/ffffff?text=AMATEUR" alt="Before transformation" loading="eager">
+                        <div class="slider-label before">BEFORE</div>
+                    </div>
+                    <div class="slider-handle">
+                        <div class="slider-button">⟷</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Problem Section -->
+    <section class="section section-dark">
+        <div class="container">
+            <h2>Your Brand is Invisible</h2>
+            <p>Without a distinctive brand, you're just another face in the crowd, forced to compete on price rather than value.</p>
+            
+            <div class="mobile-card">
+                <div class="card-icon">1</div>
+                <h3>You Look Like Everyone Else</h3>
+                <p>Your marketing materials blend in with competitors. Nothing sets you apart from dozens of others offering similar services.</p>
+            </div>
+            
+            <div class="mobile-card">
+                <div class="card-icon">2</div>
+                <h3>Can't Justify Premium Pricing</h3>
+                <p>Without a brand that communicates unique value, prospects focus only on price, forcing cost competition.</p>
+            </div>
+            
+            <div class="mobile-card">
+                <div class="card-icon">3</div>
+                <h3>Inconsistent Marketing</h3>
+                <p>Your materials lack cohesive voice and look, creating confusion rather than recognition.</p>
+            </div>
+            
+            <a href="#pricing" class="btn">Stop Being Invisible</a>
+        </div>
+    </section>
+    
+    <!-- Solution Section -->
+    <section class="section section-light">
+        <div class="container">
+            <h2>Brand Alchemy Mastery</h2>
+            <p>The complete brand strategy system that transforms businesses through AI-powered insights and proven methodology.</p>
+            
+            <div class="testimonial-mobile">
+                <p class="testimonial-text">"This transformed my business! I went from struggling to attract clients to being fully booked in just 2 months."</p>
+                <p class="testimonial-author">— Sarah J., Business Owner</p>
+            </div>
+            
+            <div class="mobile-card">
+                <div class="card-icon">🎯</div>
+                <h3>Dream Audience Blueprint</h3>
+                <p>Identify exactly who your ideal clients are so you can craft messaging that resonates deeply.</p>
+            </div>
+            
+            <div class="mobile-card">
+                <div class="card-icon">🎨</div>
+                <h3>Visual Identity System</h3>
+                <p>Get custom recommendations for your brand's visual elements based on psychology and positioning.</p>
+            </div>
+            
+            <div class="mobile-card">
+                <div class="card-icon">💬</div>
+                <h3>Messaging Framework</h3>
+                <p>Develop a consistent voice that resonates with ideal clients and builds instant trust.</p>
+            </div>
+            
+            <div class="mobile-card">
+                <div class="card-icon">🚀</div>
+                <h3>Implementation Roadmap</h3>
+                <p>Get step-by-step action plan customized to your business stage.</p>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Pricing Section -->
+    <section id="pricing" class="section section-gray">
+        <div class="container">
+            <h2 style="text-align: center;">Your Investment</h2>
+            
+            <div class="pricing-mobile">
+                <div class="pricing-header">
+                    <h3>Brand Alchemy Mastery</h3>
+                    <p>Complete Course + AI Brand Strategy</p>
+                    <div class="price-display">
+                        <span class="price-original">$997</span>
+                        <span class="price-current">$197</span>
+                    </div>
+                    <p>30-Day Money-Back Guarantee</p>
+                </div>
+                
+                <div class="pricing-body">
+                    <ul class="feature-list">
+                        <li>AI-Powered Brand Strategy Session</li>
+                        <li>Custom Brand Formula Report</li>
+                        <li>Implementation Training Videos</li>
+                        <li>Resource Library & Templates</li>
+                        <li>Content Calendar Generator</li>
+                        <li>Website Wireframes</li>
+                    </ul>
+                    
+                    <a href="#" class="btn">Buy Now - $197</a>
+                    <a href="#" class="btn btn-secondary">2 Payments of $99</a>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- FAQ Section -->
+    <section class="section section-light">
+        <div class="container">
+            <h2 style="text-align: center;">Common Questions</h2>
+            
+            <div class="faq-mobile">
+                <div class="faq-question">How does this compare to hiring an agency?</div>
+                <div class="faq-answer">
+                    <p>Agencies charge $5,000-$20,000 for the same strategic process. We've automated this through AI, delivering identical quality at a fraction of the cost.</p>
+                </div>
+            </div>
+            
+            <div class="faq-mobile">
+                <div class="faq-question">Will this work for my industry?</div>
+                <div class="faq-answer">
+                    <p>Absolutely. The Brand Alchemy methodology has been successfully applied across diverse service industries while adapting to specific business needs.</p>
+                </div>
+            </div>
+            
+            <div class="faq-mobile">
+                <div class="faq-question">How custom is the strategy really?</div>
+                <div class="faq-answer">
+                    <p>Each strategy is completely unique. Our AI conducts a thorough interview tailored to your industry, audience, and goals, then generates a comprehensive custom strategy.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Final CTA -->
+    <section class="section section-dark">
+        <div class="container">
+            <h2 style="text-align: center;">Transform Your Brand Today</h2>
+            <p style="text-align: center;">Every day your brand remains invisible is another day you're leaving money on the table.</p>
+            <a href="#" class="btn">Get My Brand Strategy Now</a>
+        </div>
+    </section>
+    
+    <!-- Sticky CTA -->
+    <div class="sticky-cta" id="stickyCTA">
+        <div class="container">
+            <a href="#" class="btn">Transform My Brand - $197</a>
+        </div>
+    </div>
+    
+    <!-- JavaScript for Mobile Interactions -->
+    <script>
+        // Mobile-optimized Before/After Slider
+        class MobileSlider {
+            constructor(element) {
+                this.container = element;
+                this.handle = element.querySelector('.slider-handle');
+                this.button = element.querySelector('.slider-button');
+                this.beforeImage = element.querySelector('.slider-before');
+                
+                this.isDragging = false;
+                this.startX = 0;
+                this.currentX = 0;
+                
+                this.init();
+            }
+            
+            init() {
+                // Touch events for mobile
+                this.button.addEventListener('touchstart', this.handleTouchStart.bind(this), { passive: false });
+                this.button.addEventListener('touchmove', this.handleTouchMove.bind(this), { passive: false });
+                this.button.addEventListener('touchend', this.handleTouchEnd.bind(this), { passive: false });
+                
+                // Mouse events for desktop fallback
+                this.button.addEventListener('mousedown', this.handleMouseDown.bind(this));
+                document.addEventListener('mousemove', this.handleMouseMove.bind(this));
+                document.addEventListener('mouseup', this.handleMouseUp.bind(this));
+            }
+            
+            handleTouchStart(e) {
+                this.isDragging = true;
+                this.startX = e.touches[0].clientX;
+                this.button.style.transform = 'translate(-50%, -50%) scale(1.1)';
+                e.preventDefault();
+            }
+            
+            handleTouchMove(e) {
+                if (!this.isDragging) return;
+                
+                this.currentX = e.touches[0].clientX;
+                this.updateSlider(this.currentX);
+                e.preventDefault();
+            }
+            
+            handleTouchEnd(e) {
+                this.isDragging = false;
+                this.button.style.transform = 'translate(-50%, -50%) scale(1)';
+                e.preventDefault();
+            }
+            
+            handleMouseDown(e) {
+                this.isDragging = true;
+                this.startX = e.clientX;
+                this.button.style.transform = 'translate(-50%, -50%) scale(1.1)';
+                e.preventDefault();
+            }
+            
+            handleMouseMove(e) {
+                if (!this.isDragging) return;
+                this.currentX = e.clientX;
+                this.updateSlider(this.currentX);
+            }
+            
+            handleMouseUp() {
+                this.isDragging = false;
+                this.button.style.transform = 'translate(-50%, -50%) scale(1)';
+            }
+            
+            updateSlider(clientX) {
+                const rect = this.container.getBoundingClientRect();
+                const x = clientX - rect.left;
+                const percentage = Math.max(0, Math.min(100, (x / rect.width) * 100));
+                
+                this.handle.style.left = `${percentage}%`;
+                this.beforeImage.style.clipPath = `inset(0 ${100 - percentage}% 0 0)`;
+            }
+        }
+        
+        // FAQ Accordion
+        class MobileFAQ {
+            constructor() {
+                this.init();
+            }
+            
+            init() {
+                const questions = document.querySelectorAll('.faq-question');
+                questions.forEach(question => {
+                    question.addEventListener('click', this.toggleFAQ.bind(this));
+                });
+            }
+            
+            toggleFAQ(e) {
+                const question = e.target;
+                const answer = question.nextElementSibling;
+                const isActive = question.classList.contains('active');
+                
+                // Close all FAQs
+                document.querySelectorAll('.faq-question').forEach(q => {
+                    q.classList.remove('active');
+                    q.nextElementSibling.classList.remove('show');
+                });
+                
+                // Open clicked FAQ if it wasn't active
+                if (!isActive) {
+                    question.classList.add('active');
+                    answer.classList.add('show');
+                }
+            }
+        }
+        
+        // Progress Bar
+        function updateProgressBar() {
+            const scrollTop = window.pageYOffset;
+            const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+            const scrollPercent = (scrollTop / docHeight) * 100;
+            
+            document.getElementById('progressBar').style.width = `${scrollPercent}%`;
+        }
+        
+        // Sticky CTA Management
+        function handleStickyCTA() {
+            const stickyCTA = document.getElementById('stickyCTA');
+            const pricingSection = document.getElementById('pricing');
+            const footer = document.querySelector('.section-dark:last-of-type');
+            
+            const pricingRect = pricingSection.getBoundingClientRect();
+            const footerRect = footer.getBoundingClientRect();
+            
+            // Show sticky CTA when pricing section is out of view but footer isn't visible
+            if (pricingRect.bottom < 0 && footerRect.top > window.innerHeight) {
+                stickyCTA.style.display = 'block';
+            } else {
+                stickyCTA.style.display = 'none';
+            }
+        }
+        
+        // Smooth Scrolling
+        function initSmoothScrolling() {
+            const links = document.querySelectorAll('a[href^="#"]');
+            links.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const targetId = this.getAttribute('href');
+                    const targetElement = document.querySelector(targetId);
+                    if (targetElement) {
+                        const headerHeight = 60;
+                        const elementPosition = targetElement.getBoundingClientRect().top;
+                        const offsetPosition = elementPosition + window.pageYOffset - headerHeight;
+                        
+                        window.scrollTo({
+                            top: offsetPosition,
+                            behavior: 'smooth'
+                        });
+                    }
+                });
+            });
+        }
+        
+        // Initialize everything
+        document.addEventListener('DOMContentLoaded', function() {
+            // Initialize mobile slider
+            const sliderElement = document.getElementById('mobileSlider');
+            if (sliderElement) {
+                new MobileSlider(sliderElement);
+            }
+            
+            // Initialize FAQ
+            new MobileFAQ();
+            
+            // Initialize smooth scrolling
+            initSmoothScrolling();
+            
+            // Add scroll listeners
+            window.addEventListener('scroll', function() {
+                updateProgressBar();
+                handleStickyCTA();
+            }, { passive: true });
+            
+            // Initial calls
+            updateProgressBar();
+            handleStickyCTA();
+            
+            console.log('📱 Mobile-optimized sales page loaded successfully');
+        });
+        
+        // Performance monitoring
+        window.addEventListener('load', function() {
+            // Simple performance logging
+            if ('performance' in window) {
+                const loadTime = performance.timing.loadEventEnd - performance.timing.navigationStart;
+                console.log(`⚡ Page loaded in ${loadTime}ms`);
+            }
+        });
+    </script>
+</body>
+</html>

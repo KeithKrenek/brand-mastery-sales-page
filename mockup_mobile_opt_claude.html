@@ -1,0 +1,592 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Brand Alchemy Mastery - Transform Your Coaching Business</title>
+    <style>
+        :root {
+            --primary-black: #000000;
+            --primary-white: #ffffff;
+            --primary-midnight: #0d1e32;
+            --secondary-gray: #edeced;
+            --secondary-gold: #d29230;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Helvetica', Arial, sans-serif;
+        }
+        
+        body {
+            color: var(--primary-black);
+            line-height: 1.6;
+            background-color: var(--primary-white);
+        }
+        
+        .container {
+            width: 100%;
+            padding: 0 20px;
+            margin: 0 auto;
+            max-width: 480px;
+        }
+        
+        .header {
+            background-color: var(--primary-black);
+            color: var(--primary-white);
+            text-align: center;
+            padding: 20px 0;
+        }
+        
+        .logo {
+            max-width: 200px;
+            margin-bottom: 10px;
+        }
+        
+        h1 {
+            font-family: 'Ibarra Real Nova', serif;
+            font-size: 28px;
+            margin-bottom: 15px;
+            line-height: 1.2;
+        }
+        
+        h2 {
+            font-family: 'Ibarra Real Nova', serif;
+            font-size: 24px;
+            margin: 25px 0 15px;
+        }
+        
+        h3 {
+            font-family: 'Ibarra Real Nova', serif;
+            font-size: 20px;
+            margin: 20px 0 10px;
+        }
+        
+        p {
+            margin-bottom: 15px;
+            font-size: 16px;
+        }
+        
+        .hero {
+            text-align: center;
+            padding: 30px 0;
+            background: linear-gradient(rgba(13, 30, 50, 0.8), rgba(13, 30, 50, 0.8)), url('/api/placeholder/400/250') center/cover no-repeat;
+            color: var(--primary-white);
+        }
+        
+        .cta-button {
+            display: block;
+            background-color: var(--secondary-gold);
+            color: var(--primary-white);
+            text-align: center;
+            padding: 15px 25px;
+            margin: 25px auto;
+            border-radius: 5px;
+            font-weight: bold;
+            text-decoration: none;
+            font-size: 18px;
+            transition: all 0.3s ease;
+            max-width: 280px;
+        }
+        
+        .section {
+            padding: 30px 0;
+            border-bottom: 1px solid var(--secondary-gray);
+        }
+        
+        .testimonial {
+            background-color: var(--secondary-gray);
+            padding: 20px;
+            border-radius: 5px;
+            margin: 20px 0;
+        }
+        
+        .testimonial-text {
+            font-style: italic;
+            margin-bottom: 10px;
+        }
+        
+        .testimonial-author {
+            font-weight: bold;
+            text-align: right;
+        }
+        
+        .feature-box {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 20px;
+        }
+        
+        .feature-icon {
+            min-width: 40px;
+            height: 40px;
+            margin-right: 15px;
+            background-color: var(--secondary-gold);
+            border-radius: 50%;
+        }
+        
+        .benefits-list li {
+            margin-bottom: 15px;
+            list-style-type: none;
+            padding-left: 25px;
+            position: relative;
+        }
+        
+        .benefits-list li:before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: var(--secondary-gold);
+            font-weight: bold;
+        }
+        
+        .pricing {
+            background-color: var(--primary-midnight);
+            color: var(--primary-white);
+            padding: 30px 20px;
+            border-radius: 5px;
+            text-align: center;
+            margin: 30px 0;
+        }
+        
+        .price {
+            font-size: 42px;
+            font-weight: bold;
+            margin: 15px 0;
+        }
+        
+        .regular-price {
+            text-decoration: line-through;
+            opacity: 0.7;
+            font-size: 24px;
+        }
+        
+        .faq-item {
+            margin-bottom: 20px;
+        }
+        
+        .faq-question {
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+        
+        .highlight {
+            background-color: rgba(210, 146, 48, 0.2);
+            padding: 2px 5px;
+        }
+        
+        .guarantee {
+            display: flex;
+            align-items: center;
+            background-color: var(--secondary-gray);
+            padding: 15px;
+            border-radius: 5px;
+            margin: 20px 0;
+        }
+        
+        .guarantee-text {
+            margin-left: 15px;
+        }
+        
+        .gold-gradient {
+            background: linear-gradient(45deg, #d29230, #ffd700);
+            -webkit-background-clip: text;
+            color: transparent;
+            display: inline;
+        }
+
+        .countdown {
+            background-color: var(--primary-black);
+            color: var(--primary-white);
+            padding: 15px;
+            border-radius: 5px;
+            text-align: center;
+            margin: 20px 0;
+        }
+        
+        .countdown-title {
+            margin-bottom: 10px;
+        }
+        
+        .countdown-timer {
+            display: flex;
+            justify-content: center;
+        }
+        
+        .countdown-segment {
+            margin: 0 5px;
+            text-align: center;
+        }
+        
+        .countdown-number {
+            background-color: var(--secondary-gold);
+            padding: 5px 10px;
+            border-radius: 3px;
+            font-weight: bold;
+            display: block;
+            margin-bottom: 5px;
+        }
+        
+        .countdown-label {
+            font-size: 12px;
+        }
+        
+        .before-after {
+            margin: 30px 0;
+        }
+        
+        .before-after-images {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 15px;
+        }
+        
+        .before-after-image {
+            width: 48%;
+        }
+        
+        .before-after-label {
+            text-align: center;
+            font-weight: bold;
+            margin-top: 5px;
+        }
+        
+        .module {
+            border: 1px solid var(--secondary-gray);
+            border-radius: 5px;
+            padding: 15px;
+            margin-bottom: 15px;
+        }
+        
+        .module-title {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+        
+        .module-name {
+            font-weight: bold;
+        }
+        
+        footer {
+            text-align: center;
+            padding: 30px 0;
+            font-size: 14px;
+            color: var(--primary-midnight);
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <div class="container">
+            <img src="/api/placeholder/200/50" alt="Elementsist Logo" class="logo">
+        </div>
+    </div>
+
+    <div class="hero">
+        <div class="container">
+            <h1>"Discover The Brand Alchemy Formula That Transforms Ordinary Coaches Into Sought-After Experts"</h1>
+            <p>The breakthrough 5-module system helping coaches stand out, attract premium clients, and build a legacy brand (even in an overcrowded marketplace)</p>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="section">
+            <h2>Is Your Coaching Business Suffering From "Brand Blur"?</h2>
+            <p>You started coaching because you have transformative skills that can change lives. But something isn't clicking... Your calendar isn't full. Your rates aren't where you want them. And potential clients keep saying "I need to think about it" instead of "When can we start?"</p>
+            
+            <p>If any of this sounds familiar, you're not alone. The problem isn't your coaching ability—it's your <span class="highlight">brand clarity</span>.</p>
+            
+            <p>In today's overcrowded coaching market, having excellent skills isn't enough. Potential clients need to <strong>instantly understand</strong> what makes you different and why they should choose you over countless alternatives.</p>
+            
+            <h3>What happens when your brand lacks clarity?</h3>
+            <ul class="benefits-list">
+                <li>Potential clients don't understand your unique value</li>
+                <li>You attract the wrong clients who drain your energy</li>
+                <li>You're forced to compete on price instead of value</li>
+                <li>You feel like you're shouting into the void on social media</li>
+                <li>Your website visitors leave without taking action</li>
+            </ul>
+            
+            <div class="testimonial">
+                <p class="testimonial-text">"Before working with Elementsist, I struggled to articulate what made my business special. After implementing the Brand Alchemy Formula, I've doubled my client base and increased my rates by 30%. The transformation has been incredible."</p>
+                <p class="testimonial-author">— Sarah J., Business Owner</p>
+            </div>
+        </div>
+        
+        <div class="section">
+            <h2>Introducing: <span class="gold-gradient">Brand Alchemy Mastery</span></h2>
+            <p>The complete, step-by-step system to transform your coaching business into a magnetic brand that attracts your ideal clients and commands premium rates.</p>
+            
+            <p>Unlike generic branding courses, Brand Alchemy Mastery combines cutting-edge AI technology with proven brand strategy to create a <strong>custom blueprint</strong> for your coaching business.</p>
+            
+            <p>This isn't just about picking colors or designing a logo. It's about uncovering the essence of what makes your coaching practice unique and crafting a legacy brand that resonates deeply with your ideal clients.</p>
+            
+            <div class="feature-box">
+                <div class="feature-icon"></div>
+                <div>
+                    <h3>The Brand Catalyst Interview</h3>
+                    <p>Our AI-powered brand strategy session digs deep to uncover what truly makes your coaching approach special. It's like having a $5,000 brand strategist in your pocket.</p>
+                </div>
+            </div>
+            
+            <div class="feature-box">
+                <div class="feature-icon"></div>
+                <div>
+                    <h3>Your Personal Brand Alchemy Formula</h3>
+                    <p>Receive a completely customized brand strategy report with actionable recommendations tailored specifically to your coaching business.</p>
+                </div>
+            </div>
+            
+            <div class="feature-box">
+                <div class="feature-icon"></div>
+                <div>
+                    <h3>Bronze-Silver-Gold Implementation</h3>
+                    <p>No overwhelm. We break down implementation into manageable steps you can apply right away, then build on as you grow.</p>
+                </div>
+            </div>
+            
+            <a href="#pricing" class="cta-button">GET INSTANT ACCESS NOW</a>
+        </div>
+        
+        <div class="section">
+            <h2>What Makes This Different From Other Branding Courses</h2>
+            
+            <div class="feature-box">
+                <div class="feature-icon"></div>
+                <div>
+                    <h3>AI-Powered Personalization</h3>
+                    <p>Most courses give you generic advice. Our Brand Catalyst Interview creates a completely customized strategy for your specific coaching business.</p>
+                </div>
+            </div>
+            
+            <div class="feature-box">
+                <div class="feature-icon"></div>
+                <div>
+                    <h3>Implementation, Not Just Information</h3>
+                    <p>You'll get clear, actionable steps organized into Bronze, Silver, and Gold levels so you can implement at your own pace without feeling overwhelmed.</p>
+                </div>
+            </div>
+            
+            <div class="feature-box">
+                <div class="feature-icon"></div>
+                <div>
+                    <h3>Community Support</h3>
+                    <p>Join a community of like-minded coaches implementing their Brand Alchemy Formula, with expert guidance and feedback along the way.</p>
+                </div>
+            </div>
+            
+            <div class="before-after">
+                <h3>Real Results From Real Business Owners</h3>
+                <div class="before-after-images">
+                    <div class="before-after-image">
+                        <img src="/api/placeholder/180/180" alt="Before Elementsist">
+                        <p class="before-after-label">BEFORE</p>
+                    </div>
+                    <div class="before-after-image">
+                        <img src="/api/placeholder/180/180" alt="After Elementsist">
+                        <p class="before-after-label">AFTER</p>
+                    </div>
+                </div>
+                <p><strong>Engineering Firm:</strong> Increased lead generation by 275% after implementing their Brand Alchemy Formula</p>
+            </div>
+            
+            <div class="before-after">
+                <div class="before-after-images">
+                    <div class="before-after-image">
+                        <img src="/api/placeholder/180/180" alt="Before Elementsist">
+                        <p class="before-after-label">BEFORE</p>
+                    </div>
+                    <div class="before-after-image">
+                        <img src="/api/placeholder/180/180" alt="After Elementsist">
+                        <p class="before-after-label">AFTER</p>
+                    </div>
+                </div>
+                <p><strong>Fashion Designer:</strong> Secured major partnerships and expanded reach to ideal clients after brand transformation</p>
+            </div>
+        </div>
+        
+        <div class="section">
+            <h2>Here's Exactly What You'll Get</h2>
+            
+            <div class="module">
+                <div class="module-title">
+                    <span class="module-name">Module 1: The Power of Branding</span>
+                </div>
+                <p>Discover why branding is the secret weapon for coaches who want to stand out and command premium rates. Learn the psychology behind effective brand building and how it directly impacts your bottom line.</p>
+            </div>
+            
+            <div class="module">
+                <div class="module-title">
+                    <span class="module-name">Module 2: Discovery - The Brand Catalyst Session</span>
+                </div>
+                <p>Engage with our AI-powered Brand Catalyst Interview to uncover your unique brand essence. This interactive experience digs deep to reveal what truly sets your coaching approach apart.</p>
+            </div>
+            
+            <div class="module">
+                <div class="module-title">
+                    <span class="module-name">Module 3: Alchemy - Transforming Insights into Identity</span>
+                </div>
+                <p>Receive your personalized Brand Alchemy Formula and understand how to leverage these insights to craft a compelling brand identity that resonates with your ideal clients.</p>
+            </div>
+            
+            <div class="module">
+                <div class="module-title">
+                    <span class="module-name">Module 4: Strategy - Implementing Your Brand Vision</span>
+                </div>
+                <p>Get step-by-step guidance on implementing your brand across multiple channels, from your website to social media. Learn how to present an aligned brand, attract the right clients, and offer the right coaching packages.</p>
+            </div>
+            
+            <div class="module">
+                <div class="module-title">
+                    <span class="module-name">Module 5: Your Brand, Your Future</span>
+                </div>
+                <p>Discover how to evolve your brand as your coaching business grows, ensuring long-term relevance and continued attraction of premium clients.</p>
+            </div>
+            
+            <h3>PLUS These Exclusive Bonuses:</h3>
+            
+            <div class="feature-box">
+                <div class="feature-icon"></div>
+                <div>
+                    <h3>Community Access</h3>
+                    <p>Connect with fellow coaches implementing their Brand Alchemy Formula, share insights, and get feedback on your branding efforts.</p>
+                </div>
+            </div>
+            
+            <div class="feature-box">
+                <div class="feature-icon"></div>
+                <div>
+                    <h3>Journaling Prompts & Challenges</h3>
+                    <p>20 powerful prompts to deepen your brand clarity plus 8 implementation challenges to ensure you take action on what you learn.</p>
+                </div>
+            </div>
+            
+            <div class="feature-box">
+                <div class="feature-icon"></div>
+                <div>
+                    <h3>Brand Voice & Messaging Guide</h3>
+                    <p>A comprehensive guide to help you craft compelling messaging that converts prospects into clients.</p>
+                </div>
+            </div>
+            
+            <a href="#pricing" class="cta-button">YES! I WANT MY BRAND ALCHEMY FORMULA</a>
+        </div>
+        
+        <div id="pricing" class="section">
+            <h2>Your Investment in a Legacy Coaching Brand</h2>
+            
+            <div class="pricing">
+                <h3>Brand Alchemy Mastery</h3>
+                <p>Complete Course + All Bonuses + AI Brand Catalyst Interview</p>
+                <p class="regular-price">$497</p>
+                <p class="price">$197</p>
+                <p><strong>One-time payment. No hidden fees.</strong></p>
+                
+                <div class="countdown">
+                    <h4 class="countdown-title">Special Launch Pricing Ends In:</h4>
+                    <div class="countdown-timer">
+                        <div class="countdown-segment">
+                            <span class="countdown-number">01</span>
+                            <span class="countdown-label">Days</span>
+                        </div>
+                        <div class="countdown-segment">
+                            <span class="countdown-number">18</span>
+                            <span class="countdown-label">Hours</span>
+                        </div>
+                        <div class="countdown-segment">
+                            <span class="countdown-number">45</span>
+                            <span class="countdown-label">Minutes</span>
+                        </div>
+                        <div class="countdown-segment">
+                            <span class="countdown-number">22</span>
+                            <span class="countdown-label">Seconds</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <a href="#" class="cta-button">GET INSTANT ACCESS NOW</a>
+            </div>
+            
+            <div class="testimonial">
+                <p class="testimonial-text">"The Brand Alchemy Formula revealed aspects of my business I never considered highlighting before. Within weeks of implementing the recommendations, I started attracting clients who were a perfect fit and willing to invest in premium packages."</p>
+                <p class="testimonial-author">— Michael T., Business Owner</p>
+            </div>
+            
+            <h3>What You're Really Getting:</h3>
+            <ul class="benefits-list">
+                <li>A completely custom brand strategy ($1,500 value)</li>
+                <li>Clarity on what makes your coaching truly unique ($997 value)</li>
+                <li>Step-by-step implementation plan ($497 value)</li>
+                <li>Community support during implementation ($397 value)</li>
+                <li>All bonuses including the Brand Voice & Messaging Guide ($297 value)</li>
+            </ul>
+            <p><strong>Total Value: $3,688</strong></p>
+            <p><strong>Your Investment Today: Just $197</strong></p>
+        </div>
+        
+        <div class="section">
+            <h2>Frequently Asked Questions</h2>
+            
+            <div class="faq-item">
+                <p class="faq-question">Is this right for me if I'm just starting my coaching business?</p>
+                <p>Absolutely! In fact, getting your branding right from the beginning will save you years of struggle and confusion. The Brand Alchemy Mastery program is designed to work whether you're just starting out or looking to refresh an established coaching practice.</p>
+            </div>
+            
+            <div class="faq-item">
+                <p class="faq-question">How is this different from other branding courses?</p>
+                <p>Most branding courses give you generic information and leave you to figure out how to apply it to your business. Brand Alchemy Mastery uses AI-powered personalization to create a custom brand strategy specifically for your coaching business, then guides you through implementation with Bronze, Silver, and Gold level steps.</p>
+            </div>
+            
+            <div class="faq-item">
+                <p class="faq-question">I'm not tech-savvy. Will I be able to implement what I learn?</p>
+                <p>Yes! We've designed the course with simplicity in mind. The Bronze level implementation steps require no special skills or tools, and you can move to Silver and Gold levels at your own pace. Plus, our community support means you're never alone in the process.</p>
+            </div>
+            
+            <div class="faq-item">
+                <p class="faq-question">How soon can I expect to see results?</p>
+                <p>Many coaches report seeing initial results within days of implementing their Bronze level actions, particularly in how they communicate their value to potential clients. The full transformation typically unfolds over 30-90 days as you implement more elements of your Brand Alchemy Formula.</p>
+            </div>
+            
+            <div class="faq-item">
+                <p class="faq-question">How much time will I need to complete the course?</p>
+                <p>The initial Brand Catalyst Interview takes about 90 minutes. After that, you can work through the modules at your own pace. Most coaches spend 2-3 hours per week implementing what they learn and see significant results within 4-6 weeks.</p>
+            </div>
+            
+            <a href="#pricing" class="cta-button">GET STARTED NOW</a>
+        </div>
+        
+        <div class="section">
+            <h2>It's Decision Time</h2>
+            
+            <p>As a coach, you have three options right now:</p>
+            
+            <p><strong>Option 1:</strong> Continue as you are, blending in with thousands of other coaches, struggling to fill your calendar and justify your rates.</p>
+            
+            <p><strong>Option 2:</strong> Try to figure out branding on your own through endless Google searches, free webinars, and trial-and-error (which could take years and cost you thousands in missed opportunities).</p>
+            
+            <p><strong>Option 3:</strong> Get your customized Brand Alchemy Formula today and follow our proven system to transform your coaching business into a magnetic brand that attracts premium clients.</p>
+            
+            <p>The coaches who stand out and thrive in today's crowded market aren't necessarily the most skilled—they're the ones with the clearest, most compelling brands.</p>
+            
+            <p>Your coaching skills deserve to be recognized. Your message deserves to be heard. And your ideal clients deserve to find you.</p>
+            
+            <p>Brand Alchemy Mastery is your path to creating a legacy coaching brand that makes all of that possible.</p>
+            
+            <a href="#pricing" class="cta-button">YES! I'M READY TO TRANSFORM MY COACHING BRAND</a>
+        </div>
+    </div>
+    
+    <footer>
+        <div class="container">
+            <p>© 2025 Elementsist. All Rights Reserved.</p>
+        </div>
+    </footer>
+</body>
+</html>
+
+
+

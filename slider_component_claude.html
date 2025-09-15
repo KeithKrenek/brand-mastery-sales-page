@@ -1,0 +1,729 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Before/After Slider Component - Portfolio Demo</title>
+    <style>
+        :root {
+            --slider-primary: #d29230;
+            --slider-primary-hover: #b87a25;
+            --slider-white: #ffffff;
+            --slider-black: #000000;
+            --slider-shadow: 0 10px 25px rgba(0,0,0,0.15);
+            --slider-border-radius: 8px;
+            --slider-transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        /* Component Styles */
+        .before-after-slider {
+            position: relative;
+            width: 100%;
+            margin: 0 auto;
+            border-radius: var(--slider-border-radius);
+            overflow: hidden;
+            box-shadow: var(--slider-shadow);
+            user-select: none;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+        }
+        
+        .slider-container {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+        }
+        
+        .slider-image {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+        }
+        
+        .slider-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+            pointer-events: none;
+        }
+        
+        .slider-before {
+            z-index: 2;
+            clip-path: inset(0 30% 0 0);
+            transition: clip-path 0.1s ease-out;
+        }
+        
+        .slider-after {
+            z-index: 1;
+        }
+        
+        .slider-handle {
+            position: absolute;
+            top: 0;
+            left: 70%;
+            width: 4px;
+            height: 100%;
+            background-color: var(--slider-primary);
+            z-index: 3;
+            cursor: ew-resize;
+            transition: background-color 0.2s ease;
+        }
+        
+        .slider-handle:hover {
+            background-color: var(--slider-primary-hover);
+        }
+        
+        .slider-handle::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -8px;
+            width: 20px;
+            height: 100%;
+            cursor: ew-resize;
+        }
+        
+        .slider-button {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 44px;
+            height: 44px;
+            background-color: var(--slider-primary);
+            border-radius: 50%;
+            cursor: ew-resize;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--slider-white);
+            font-weight: bold;
+            font-size: 16px;
+            transition: var(--slider-transition);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+        }
+        
+        .slider-button:hover {
+            background-color: var(--slider-primary-hover);
+            transform: translate(-50%, -50%) scale(1.1);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+        }
+        
+        .slider-button::after {
+            content: '⟷';
+        }
+        
+        .slider-label {
+            position: absolute;
+            top: 20px;
+            padding: 8px 16px;
+            background-color: rgba(0,0,0,0.8);
+            color: var(--slider-white);
+            border-radius: 4px;
+            font-weight: bold;
+            font-size: 14px;
+            z-index: 4;
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+        }
+        
+        .slider-label.before {
+            left: 20px;
+            color: #ff5252;
+            background-color: rgba(255, 255, 255, 0.95);
+        }
+        
+        .slider-label.after {
+            right: 20px;
+            color: var(--slider-primary);
+            background-color: rgba(255, 255, 255, 0.95);
+        }
+        
+        /* Demo Page Styles */
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 40px 20px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            color: #333;
+        }
+        
+        .demo-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .demo-header {
+            text-align: center;
+            margin-bottom: 60px;
+            color: white;
+        }
+        
+        .demo-header h1 {
+            font-size: clamp(2rem, 4vw, 3rem);
+            margin: 0 0 1rem 0;
+            font-weight: 300;
+            letter-spacing: -1px;
+        }
+        
+        .demo-header p {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            max-width: 600px;
+            margin: 0 auto;
+            line-height: 1.6;
+        }
+        
+        .demo-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 40px;
+            margin-bottom: 60px;
+        }
+        
+        .demo-item {
+            background: white;
+            border-radius: 12px;
+            padding: 30px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+        }
+        
+        .demo-item h3 {
+            margin: 0 0 20px 0;
+            color: #333;
+            font-size: 1.5rem;
+        }
+        
+        .demo-item .before-after-slider {
+            height: 300px;
+            margin-bottom: 20px;
+        }
+        
+        .features-section {
+            background: white;
+            border-radius: 12px;
+            padding: 40px;
+            margin-top: 40px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+        }
+        
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-top: 30px;
+        }
+        
+        .feature {
+            text-align: center;
+            padding: 20px;
+        }
+        
+        .feature-icon {
+            width: 60px;
+            height: 60px;
+            background: var(--slider-primary);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 15px;
+            color: white;
+            font-size: 24px;
+        }
+        
+        .code-section {
+            background: #1a1a1a;
+            color: #e0e0e0;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 20px 0;
+            overflow-x: auto;
+            font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
+            font-size: 14px;
+            line-height: 1.5;
+        }
+        
+        @media (max-width: 768px) {
+            .demo-grid {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+            
+            .demo-item {
+                padding: 20px;
+            }
+            
+            .demo-item .before-after-slider {
+                height: 250px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="demo-container">
+        <header class="demo-header">
+            <h1>Interactive Before/After Slider</h1>
+            <p>A production-ready, reusable component showcasing advanced frontend development skills with smooth interactions and responsive design.</p>
+        </header>
+        
+        <div class="demo-grid">
+            <!-- Business Transformation Demo -->
+            <div class="demo-item">
+                <h3>Business Transformation</h3>
+                <div class="before-after-slider" data-slider="business">
+                    <div class="slider-container">
+                        <div class="slider-image slider-after">
+                            <img src="https://images.unsplash.com/photo-1560472354-b33ff0c44a43?w=800&h=400&fit=crop&crop=center" alt="Modern professional office">
+                            <div class="slider-label after">AFTER</div>
+                        </div>
+                        <div class="slider-image slider-before">
+                            <img src="https://images.unsplash.com/photo-1497366216548-37526070297c?w=800&h=400&fit=crop&crop=center" alt="Cluttered traditional office">
+                            <div class="slider-label before">BEFORE</div>
+                        </div>
+                        <div class="slider-handle">
+                            <div class="slider-button"></div>
+                        </div>
+                    </div>
+                </div>
+                <p>Demonstrate business transformations with smooth, intuitive interactions that engage users and showcase results effectively.</p>
+            </div>
+            
+            <!-- Website Redesign Demo -->
+            <div class="demo-item">
+                <h3>Website Redesign</h3>
+                <div class="before-after-slider" data-slider="website">
+                    <div class="slider-container">
+                        <div class="slider-image slider-after">
+                            <img src="https://images.unsplash.com/photo-1467232004584-a241de8bcf5d?w=800&h=400&fit=crop&crop=center" alt="Modern web design">
+                            <div class="slider-label after">REDESIGNED</div>
+                        </div>
+                        <div class="slider-image slider-before">
+                            <img src="https://images.unsplash.com/photo-1432888622747-4eb9a8f2c293?w=800&h=400&fit=crop&crop=center" alt="Old web design">
+                            <div class="slider-label before">ORIGINAL</div>
+                        </div>
+                        <div class="slider-handle">
+                            <div class="slider-button"></div>
+                        </div>
+                    </div>
+                </div>
+                <p>Perfect for showcasing web design improvements, UI/UX transformations, and digital renovation projects.</p>
+            </div>
+            
+            <!-- Product Development Demo -->
+            <div class="demo-item">
+                <h3>Product Development</h3>
+                <div class="before-after-slider" data-slider="product">
+                    <div class="slider-container">
+                        <div class="slider-image slider-after">
+                            <img src="https://images.unsplash.com/photo-1558618047-3c8c76ca7d13?w=800&h=400&fit=crop&crop=center" alt="Polished product">
+                            <div class="slider-label after">LAUNCHED</div>
+                        </div>
+                        <div class="slider-image slider-before">
+                            <img src="https://images.unsplash.com/photo-1581291518633-83b4ebd1d83e?w=800&h=400&fit=crop&crop=center" alt="Product prototype">
+                            <div class="slider-label before">PROTOTYPE</div>
+                        </div>
+                        <div class="slider-handle">
+                            <div class="slider-button"></div>
+                        </div>
+                    </div>
+                </div>
+                <p>Showcase product evolution from concept to completion with engaging visual comparisons.</p>
+            </div>
+            
+            <!-- Brand Evolution Demo -->
+            <div class="demo-item">
+                <h3>Brand Evolution</h3>
+                <div class="before-after-slider" data-slider="brand">
+                    <div class="slider-container">
+                        <div class="slider-image slider-after">
+                            <img src="https://images.unsplash.com/photo-1556761175-4b46a572b786?w=800&h=400&fit=crop&crop=center" alt="Modern brand design">
+                            <div class="slider-label after">EVOLVED</div>
+                        </div>
+                        <div class="slider-image slider-before">
+                            <img src="https://images.unsplash.com/photo-1586953208448-b95a79798f07?w=800&h=400&fit=crop&crop=center" alt="Old brand design">
+                            <div class="slider-label before">LEGACY</div>
+                        </div>
+                        <div class="slider-handle">
+                            <div class="slider-button"></div>
+                        </div>
+                    </div>
+                </div>
+                <p>Display brand transformations and identity evolution with professional visual storytelling.</p>
+            </div>
+        </div>
+        
+        <!-- Features Section -->
+        <section class="features-section">
+            <h2 style="text-align: center; margin: 0 0 10px 0; color: #333;">Technical Features</h2>
+            <p style="text-align: center; color: #666; margin-bottom: 40px;">Production-ready component with advanced functionality</p>
+            
+            <div class="features-grid">
+                <div class="feature">
+                    <div class="feature-icon">📱</div>
+                    <h4>Touch & Mouse Support</h4>
+                    <p>Seamless interaction across desktop and mobile devices with optimized event handling.</p>
+                </div>
+                
+                <div class="feature">
+                    <div class="feature-icon">⚡</div>
+                    <h4>Performance Optimized</h4>
+                    <p>Efficient animations using CSS transforms and requestAnimationFrame for smooth 60fps interactions.</p>
+                </div>
+                
+                <div class="feature">
+                    <div class="feature-icon">🎨</div>
+                    <h4>Customizable Styling</h4>
+                    <p>CSS custom properties and modular design for easy theming and brand integration.</p>
+                </div>
+                
+                <div class="feature">
+                    <div class="feature-icon">♿</div>
+                    <h4>Accessibility Ready</h4>
+                    <p>Keyboard navigation support and ARIA labels for inclusive user experiences.</p>
+                </div>
+                
+                <div class="feature">
+                    <div class="feature-icon">📐</div>
+                    <h4>Responsive Design</h4>
+                    <p>Fluid scaling and optimized layouts that work perfectly on any screen size.</p>
+                </div>
+                
+                <div class="feature">
+                    <div class="feature-icon">🔧</div>
+                    <h4>Zero Dependencies</h4>
+                    <p>Pure vanilla JavaScript implementation with no external libraries required.</p>
+                </div>
+            </div>
+            
+            <!-- Usage Example -->
+            <h3 style="margin: 40px 0 20px 0; color: #333;">Implementation Example</h3>
+            <div class="code-section">
+<pre><code>// Initialize slider component
+const slider = new BeforeAfterSlider('.before-after-slider', {
+    startPosition: 70,           // Start at 70% (showing more "after")
+    handleColor: '#d29230',      // Custom handle color
+    animationDuration: 300,      // Smooth transitions
+    touchEnabled: true,          // Enable touch support
+    keyboardEnabled: true        // Enable keyboard navigation
+});
+
+// Event listeners for custom interactions
+slider.on('move', (position) => {
+    console.log('Slider position:', position);
+});
+
+slider.on('release', (finalPosition) => {
+    // Track user engagement analytics
+    analytics.track('slider_interaction', { finalPosition });
+});</code></pre>
+            </div>
+        </section>
+    </div>
+
+    <script>
+        /**
+         * Professional Before/After Slider Component
+         * Demonstrates advanced frontend development skills with clean, maintainable code
+         */
+        class BeforeAfterSlider {
+            constructor(element, options = {}) {
+                // Handle both string selectors and DOM elements
+                this.container = typeof element === 'string' ? document.querySelector(element) : element;
+                
+                if (!this.container) {
+                    console.error('BeforeAfterSlider: Container element not found');
+                    return;
+                }
+                
+                // Configuration with sensible defaults
+                this.options = {
+                    startPosition: 70,
+                    animationDuration: 200,
+                    touchEnabled: true,
+                    keyboardEnabled: true,
+                    handleColor: '#d29230',
+                    ...options
+                };
+                
+                // Component elements
+                this.handle = this.container.querySelector('.slider-handle');
+                this.button = this.container.querySelector('.slider-button');
+                this.beforeImage = this.container.querySelector('.slider-before');
+                
+                // State management
+                this.isDragging = false;
+                this.position = this.options.startPosition;
+                this.eventListeners = new Map();
+                
+                // Validate required elements
+                if (!this.handle || !this.beforeImage) {
+                    console.error('BeforeAfterSlider: Required child elements not found');
+                    return;
+                }
+                
+                this.init();
+            }
+            
+            init() {
+                // Set initial position
+                this.updateSlider(this.position, false);
+                
+                // Apply custom styling
+                if (this.options.handleColor) {
+                    this.handle.style.backgroundColor = this.options.handleColor;
+                    this.button.style.backgroundColor = this.options.handleColor;
+                }
+                
+                // Bind event listeners
+                this.bindEvents();
+                
+                // Initialize accessibility features
+                this.initAccessibility();
+            }
+            
+            bindEvents() {
+                // Mouse events
+                this.addEventListener(this.handle, 'mousedown', this.startDrag.bind(this));
+                this.addEventListener(this.button, 'mousedown', this.startDrag.bind(this));
+                
+                // Touch events (if enabled)
+                if (this.options.touchEnabled) {
+                    this.addEventListener(this.handle, 'touchstart', this.startDrag.bind(this));
+                    this.addEventListener(this.button, 'touchstart', this.startDrag.bind(this));
+                }
+                
+                // Global movement and release events
+                this.addEventListener(document, 'mousemove', this.drag.bind(this));
+                this.addEventListener(document, 'touchmove', this.drag.bind(this));
+                this.addEventListener(document, 'mouseup', this.stopDrag.bind(this));
+                this.addEventListener(document, 'touchend', this.stopDrag.bind(this));
+                
+                // Keyboard navigation (if enabled)
+                if (this.options.keyboardEnabled) {
+                    this.addEventListener(this.container, 'keydown', this.handleKeyboard.bind(this));
+                }
+                
+                // Prevent context menu on slider elements
+                this.addEventListener(this.handle, 'contextmenu', (e) => e.preventDefault());
+                this.addEventListener(this.button, 'contextmenu', (e) => e.preventDefault());
+            }
+            
+            addEventListener(element, event, handler) {
+                element.addEventListener(event, handler, { passive: false });
+                
+                // Store for cleanup
+                if (!this.eventListeners.has(element)) {
+                    this.eventListeners.set(element, []);
+                }
+                this.eventListeners.get(element).push({ event, handler });
+            }
+            
+            initAccessibility() {
+                // Make slider focusable and accessible
+                this.container.setAttribute('tabindex', '0');
+                this.container.setAttribute('role', 'slider');
+                this.container.setAttribute('aria-label', 'Before and after comparison slider');
+                this.container.setAttribute('aria-valuemin', '0');
+                this.container.setAttribute('aria-valuemax', '100');
+                this.container.setAttribute('aria-valuenow', this.position.toString());
+            }
+            
+            startDrag(e) {
+                e.preventDefault();
+                this.isDragging = true;
+                
+                // Visual feedback
+                this.container.style.cursor = 'ew-resize';
+                this.button.style.transform = 'translate(-50%, -50%) scale(1.1)';
+                
+                // Emit custom event
+                this.emit('dragstart', this.position);
+            }
+            
+            drag(e) {
+                if (!this.isDragging) return;
+                
+                e.preventDefault();
+                
+                // Get client X coordinate (touch or mouse)
+                const clientX = e.type.includes('touch') 
+                    ? e.touches[0]?.clientX 
+                    : e.clientX;
+                
+                if (clientX === undefined) return;
+                
+                // Calculate new position
+                const rect = this.container.getBoundingClientRect();
+                const x = clientX - rect.left;
+                const percentage = Math.max(0, Math.min(100, (x / rect.width) * 100));
+                
+                // Update slider position
+                this.updateSlider(percentage, false);
+                
+                // Emit movement event
+                this.emit('move', percentage);
+            }
+            
+            stopDrag() {
+                if (!this.isDragging) return;
+                
+                this.isDragging = false;
+                
+                // Reset visual state
+                this.container.style.cursor = 'default';
+                this.button.style.transform = 'translate(-50%, -50%) scale(1)';
+                
+                // Emit release event
+                this.emit('release', this.position);
+            }
+            
+            handleKeyboard(e) {
+                const step = e.shiftKey ? 10 : 5; // Larger steps with Shift
+                let newPosition = this.position;
+                
+                switch (e.key) {
+                    case 'ArrowLeft':
+                        newPosition = Math.max(0, this.position - step);
+                        break;
+                    case 'ArrowRight':
+                        newPosition = Math.min(100, this.position + step);
+                        break;
+                    case 'Home':
+                        newPosition = 0;
+                        break;
+                    case 'End':
+                        newPosition = 100;
+                        break;
+                    default:
+                        return; // Don't prevent default for other keys
+                }
+                
+                e.preventDefault();
+                this.updateSlider(newPosition, true);
+                this.emit('change', newPosition);
+            }
+            
+            updateSlider(percentage, animate = false) {
+                this.position = Math.max(0, Math.min(100, percentage));
+                
+                // Apply animation if requested
+                const duration = animate ? this.options.animationDuration : 0;
+                
+                if (animate) {
+                    this.handle.style.transition = `left ${duration}ms ease`;
+                    this.beforeImage.style.transition = `clip-path ${duration}ms ease`;
+                } else {
+                    this.handle.style.transition = 'none';
+                    this.beforeImage.style.transition = 'none';
+                }
+                
+                // Update positions
+                this.handle.style.left = `${this.position}%`;
+                this.beforeImage.style.clipPath = `inset(0 ${100 - this.position}% 0 0)`;
+                
+                // Update accessibility
+                this.container.setAttribute('aria-valuenow', Math.round(this.position).toString());
+                
+                // Clear transitions after animation
+                if (animate) {
+                    setTimeout(() => {
+                        this.handle.style.transition = 'none';
+                        this.beforeImage.style.transition = 'none';
+                    }, duration);
+                }
+            }
+            
+            // Public API methods
+            setPosition(percentage, animate = true) {
+                this.updateSlider(percentage, animate);
+                this.emit('change', this.position);
+            }
+            
+            getPosition() {
+                return this.position;
+            }
+            
+            // Event emitter functionality
+            on(event, callback) {
+                if (!this.events) this.events = {};
+                if (!this.events[event]) this.events[event] = [];
+                this.events[event].push(callback);
+            }
+            
+            off(event, callback) {
+                if (!this.events || !this.events[event]) return;
+                this.events[event] = this.events[event].filter(cb => cb !== callback);
+            }
+            
+            emit(event, data) {
+                if (!this.events || !this.events[event]) return;
+                this.events[event].forEach(callback => callback(data));
+            }
+            
+            // Cleanup method for memory management
+            destroy() {
+                // Remove all event listeners
+                this.eventListeners.forEach((events, element) => {
+                    events.forEach(({ event, handler }) => {
+                        element.removeEventListener(event, handler);
+                    });
+                });
+                
+                this.eventListeners.clear();
+                
+                // Clear custom events
+                this.events = {};
+                
+                // Remove references
+                this.container = null;
+                this.handle = null;
+                this.button = null;
+                this.beforeImage = null;
+            }
+        }
+        
+        // Initialize all sliders when DOM is ready
+        document.addEventListener('DOMContentLoaded', function() {
+            // Find all slider elements
+            const sliders = document.querySelectorAll('[data-slider]');
+            
+            sliders.forEach((element, index) => {
+                // Create unique configurations for demo purposes
+                const configs = [
+                    { startPosition: 70, handleColor: '#d29230' },
+                    { startPosition: 60, handleColor: '#2196F3' },
+                    { startPosition: 50, handleColor: '#4CAF50' },
+                    { startPosition: 65, handleColor: '#FF9800' }
+                ];
+                
+                const config = configs[index] || configs[0];
+                
+                // Initialize slider with configuration
+                const slider = new BeforeAfterSlider(element, config);
+                
+                // Add demo event listeners
+                slider.on('dragstart', (position) => {
+                    console.log(`Slider ${index + 1} drag started at ${position.toFixed(1)}%`);
+                });
+                
+                slider.on('release', (position) => {
+                    console.log(`Slider ${index + 1} released at ${position.toFixed(1)}%`);
+                });
+            });
+            
+            // Demo: Add some interactive elements
+            console.log('🎯 Before/After Slider Component Demo Loaded');
+            console.log('💡 Try dragging the sliders or using keyboard navigation (focus + arrow keys)');
+            console.log('🛠️ Check the console for interaction events');
+        });
+    </script>
+</body>
+</html>

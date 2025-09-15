@@ -1,0 +1,778 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Transform your business with Brand Alchemy Mastery - Professional branding course with AI-powered strategy">
+    <title>Brand Alchemy Mastery | Transform Your Business Brand</title>
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Ibarra+Real+Nova:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+    
+    <!-- CSS Variables and Base Styles -->
+    <style>
+        :root {
+            --color-black: #000000;
+            --color-white: #ffffff;
+            --color-midnight: #0d1e32;
+            --color-gray: #edeced;
+            --color-gold: #d29230;
+            --color-gold-hover: #b87a25;
+            
+            --font-serif: 'Ibarra Real Nova', serif;
+            --font-sans: Helvetica, Arial, sans-serif;
+            
+            --container-max: 1200px;
+            --border-radius: 8px;
+            --transition: all 0.3s ease;
+            --shadow-light: 0 5px 15px rgba(0,0,0,0.1);
+            --shadow-medium: 0 10px 30px rgba(0,0,0,0.15);
+            --shadow-heavy: 0 20px 40px rgba(0,0,0,0.2);
+        }
+        
+        /* Reset and Base Styles */
+        *, *::before, *::after {
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: var(--font-sans);
+            font-size: 18px;
+            line-height: 1.6;
+            color: var(--color-black);
+            background-color: var(--color-white);
+            margin: 0;
+            padding: 0;
+        }
+        
+        /* Typography */
+        h1, h2, h3, h4, h5, h6 {
+            font-family: var(--font-serif);
+            font-weight: 500;
+            line-height: 1.2;
+            margin: 0 0 1rem 0;
+        }
+        
+        h1 { font-size: clamp(2rem, 5vw, 3.125rem); }
+        h2 { font-size: clamp(1.75rem, 4vw, 2.5rem); }
+        h3 { font-size: clamp(1.5rem, 3vw, 1.875rem); }
+        
+        p { margin: 0 0 1em 0; }
+        
+        /* Container */
+        .container {
+            max-width: var(--container-max);
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* Header */
+        .header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background-color: var(--color-white);
+            box-shadow: var(--shadow-light);
+            z-index: 1000;
+            padding: 20px 0;
+            transition: var(--transition);
+        }
+        
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            max-width: 200px;
+            height: auto;
+        }
+        
+        /* Buttons */
+        .btn {
+            display: inline-block;
+            padding: 15px 30px;
+            border: none;
+            border-radius: var(--border-radius);
+            font-weight: bold;
+            text-decoration: none;
+            cursor: pointer;
+            transition: var(--transition);
+            font-family: var(--font-sans);
+            font-size: 16px;
+            text-align: center;
+        }
+        
+        .btn-primary {
+            background-color: var(--color-gold);
+            color: var(--color-white);
+        }
+        
+        .btn-primary:hover {
+            background-color: var(--color-gold-hover);
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-medium);
+        }
+        
+        .btn-large {
+            padding: 20px 40px;
+            font-size: 20px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        /* Hero Section */
+        .hero {
+            padding: 180px 0 100px;
+            background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), 
+                        url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><rect fill="%23000" width="100" height="100"/></svg>');
+            background-size: cover;
+            background-position: center;
+            color: var(--color-white);
+            text-align: center;
+        }
+        
+        .hero-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .hero h1 {
+            margin-bottom: 2rem;
+        }
+        
+        .gold-accent {
+            background: linear-gradient(to right, #c79a3c, #f9d77f, #c79a3c);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+        
+        /* Before/After Slider */
+        .before-after-slider {
+            position: relative;
+            width: 100%;
+            max-width: 800px;
+            height: 400px;
+            margin: 40px auto;
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            box-shadow: var(--shadow-heavy);
+        }
+        
+        .slider-container {
+            position: relative;
+            width: 100%;
+            height: 100%;
+        }
+        
+        .slider-image {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+        
+        .slider-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+        
+        .slider-before {
+            z-index: 2;
+            clip-path: inset(0 50% 0 0);
+        }
+        
+        .slider-after {
+            z-index: 1;
+        }
+        
+        .slider-handle {
+            position: absolute;
+            top: 0;
+            left: 50%;
+            width: 4px;
+            height: 100%;
+            background-color: var(--color-gold);
+            z-index: 3;
+            cursor: ew-resize;
+        }
+        
+        .slider-button {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 40px;
+            height: 40px;
+            background-color: var(--color-gold);
+            border-radius: 50%;
+            cursor: ew-resize;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--color-white);
+            font-weight: bold;
+            user-select: none;
+        }
+        
+        .slider-label {
+            position: absolute;
+            top: 20px;
+            padding: 8px 16px;
+            background-color: rgba(0,0,0,0.8);
+            color: var(--color-white);
+            border-radius: 4px;
+            font-weight: bold;
+            font-size: 14px;
+            z-index: 4;
+        }
+        
+        .slider-label.before {
+            left: 20px;
+        }
+        
+        .slider-label.after {
+            right: 20px;
+        }
+        
+        /* Sections */
+        .section {
+            padding: 80px 0;
+        }
+        
+        .section-dark {
+            background-color: var(--color-midnight);
+            color: var(--color-white);
+        }
+        
+        .section-light {
+            background-color: var(--color-white);
+            color: var(--color-black);
+        }
+        
+        .section-gray {
+            background-color: var(--color-gray);
+            color: var(--color-black);
+        }
+        
+        /* Features Grid */
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin: 50px 0;
+        }
+        
+        .feature-card {
+            background-color: var(--color-white);
+            padding: 30px;
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow-light);
+            transition: var(--transition);
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-medium);
+        }
+        
+        .feature-icon {
+            width: 60px;
+            height: 60px;
+            background-color: rgba(210, 146, 48, 0.1);
+            border-radius: var(--border-radius);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 20px;
+            font-size: 24px;
+            color: var(--color-gold);
+        }
+        
+        /* Pricing */
+        .pricing-card {
+            background-color: var(--color-white);
+            border-radius: 12px;
+            box-shadow: var(--shadow-medium);
+            overflow: hidden;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        
+        .pricing-header {
+            background-color: var(--color-black);
+            color: var(--color-white);
+            padding: 40px;
+            text-align: center;
+        }
+        
+        .pricing-body {
+            padding: 40px;
+        }
+        
+        .price-display {
+            margin: 20px 0;
+        }
+        
+        .price-original {
+            text-decoration: line-through;
+            color: #aaa;
+            font-size: 24px;
+            margin-right: 15px;
+        }
+        
+        .price-current {
+            font-size: 48px;
+            font-weight: bold;
+            color: var(--color-gold);
+        }
+        
+        /* FAQ */
+        .faq-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .faq-item {
+            background-color: var(--color-white);
+            border-radius: var(--border-radius);
+            margin-bottom: 20px;
+            box-shadow: var(--shadow-light);
+            overflow: hidden;
+        }
+        
+        .faq-question {
+            padding: 25px;
+            background-color: #f9f9f9;
+            cursor: pointer;
+            font-weight: bold;
+            position: relative;
+            transition: var(--transition);
+        }
+        
+        .faq-question:hover {
+            background-color: #f0f0f0;
+        }
+        
+        .faq-question::after {
+            content: '+';
+            position: absolute;
+            right: 25px;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 24px;
+            color: var(--color-gold);
+            transition: var(--transition);
+        }
+        
+        .faq-question.active::after {
+            content: '−';
+        }
+        
+        .faq-answer {
+            padding: 0 25px;
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease, padding 0.3s ease;
+        }
+        
+        .faq-answer.show {
+            padding: 25px;
+            max-height: 500px;
+        }
+        
+        /* Footer */
+        .footer {
+            background-color: var(--color-midnight);
+            color: var(--color-white);
+            padding: 60px 0 20px;
+            text-align: center;
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                gap: 15px;
+            }
+            
+            .hero {
+                padding: 150px 0 80px;
+            }
+            
+            .before-after-slider {
+                height: 300px;
+                margin: 30px auto;
+            }
+            
+            .features-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+            
+            .section {
+                padding: 60px 0;
+            }
+            
+            .btn-large {
+                padding: 15px 25px;
+                font-size: 18px;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .container {
+                padding: 0 15px;
+            }
+            
+            .pricing-header,
+            .pricing-body {
+                padding: 25px;
+            }
+            
+            .price-current {
+                font-size: 36px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <img src="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 50'><text x='10' y='35' font-family='serif' font-size='24' fill='%23000'>Elementsist</text></svg>" alt="Elementsist" class="logo">
+                <a href="#pricing" class="btn btn-primary">Get Started</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <h1>Transform Your <span class="gold-accent">Invisible</span> Business Into a <span class="gold-accent">Magnetic</span> Brand</h1>
+                <h2>Without spending $20,000 on an agency or wasting months on ineffective DIY solutions</h2>
+                <p>Get the EXACT same brand strategy that high-end agencies charge thousands for — delivered by our AI-powered system in just <strong>3 hours</strong>.</p>
+                <a href="#pricing" class="btn btn-primary btn-large">Transform My Brand Today - $197</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Before/After Demo -->
+    <section class="section section-light">
+        <div class="container">
+            <h2 style="text-align: center; margin-bottom: 40px;">See the Transformation</h2>
+            <div class="before-after-slider" id="beforeAfterSlider">
+                <div class="slider-container">
+                    <div class="slider-image slider-after">
+                        <img src="https://via.placeholder.com/800x400/d29230/ffffff?text=AFTER" alt="After transformation">
+                        <div class="slider-label after">STRATEGIC</div>
+                    </div>
+                    <div class="slider-image slider-before">
+                        <img src="https://via.placeholder.com/800x400/666666/ffffff?text=BEFORE" alt="Before transformation">
+                        <div class="slider-label before">AMATEUR</div>
+                    </div>
+                    <div class="slider-handle">
+                        <div class="slider-button">⟷</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Problem Section -->
+    <section class="section section-dark">
+        <div class="container">
+            <h2>The Painful Truth: Your Brand is Invisible</h2>
+            <p>In today's crowded marketplace, delivering great results isn't enough. Without a distinctive brand, you're just another face in the crowd.</p>
+            
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">1</div>
+                    <h3>You Look Like Everyone Else</h3>
+                    <p>Your website and marketing materials blend in with competitors. Nothing visually sets you apart from dozens of others offering similar services.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">2</div>
+                    <h3>You Can't Justify Premium Pricing</h3>
+                    <p>Without a brand that communicates unique value, prospects focus only on price, forcing you to compete on cost rather than quality.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">3</div>
+                    <h3>Your Marketing Feels Inconsistent</h3>
+                    <p>Your social posts, website, and materials lack cohesive voice and look, creating confusion rather than recognition.</p>
+                </div>
+            </div>
+            
+            <div style="text-align: center; margin-top: 50px;">
+                <p><strong>Every day your brand remains invisible is another day you're leaving money on the table.</strong></p>
+                <a href="#pricing" class="btn btn-primary btn-large">Stop Being Invisible</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Solution Section -->
+    <section class="section section-light">
+        <div class="container">
+            <h2>Introducing: Brand Alchemy Mastery</h2>
+            <p>The complete brand strategy system that transforms businesses through AI-powered insights and proven methodology.</p>
+            
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">🎯</div>
+                    <h3>Dream Audience Blueprint</h3>
+                    <p>Identify exactly who your ideal clients are beyond basic demographics, so you can craft messaging that resonates deeply.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">🎨</div>
+                    <h3>Visual Identity System</h3>
+                    <p>Get custom recommendations for your brand's visual elements based on psychological principles and industry positioning.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">💬</div>
+                    <h3>Messaging Framework</h3>
+                    <p>Develop a consistent voice that resonates with ideal clients and builds instant trust.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">🚀</div>
+                    <h3>Implementation Roadmap</h3>
+                    <p>Get a step-by-step action plan customized to your business stage so you know exactly what to do next.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing Section -->
+    <section id="pricing" class="section section-gray">
+        <div class="container">
+            <h2 style="text-align: center;">Your All-Access Pass to Premium Branding</h2>
+            
+            <div class="pricing-card">
+                <div class="pricing-header">
+                    <h3>Brand Alchemy Mastery</h3>
+                    <p>Complete Course with AI Brand Strategy</p>
+                    <div class="price-display">
+                        <span class="price-original">$997</span>
+                        <span class="price-current">$197</span>
+                    </div>
+                    <p>30-Day Money-Back Guarantee</p>
+                </div>
+                
+                <div class="pricing-body">
+                    <ul style="list-style: none; padding: 0;">
+                        <li style="margin-bottom: 15px;">✓ Brand Catalyst Interview with AI Agent</li>
+                        <li style="margin-bottom: 15px;">✓ Customized Brand Strategy Report</li>
+                        <li style="margin-bottom: 15px;">✓ 3-Tier Implementation Training</li>
+                        <li style="margin-bottom: 15px;">✓ Resource Library with Templates</li>
+                        <li style="margin-bottom: 15px;">✓ Content Calendar Generator</li>
+                        <li style="margin-bottom: 15px;">✓ Website Wireframes</li>
+                    </ul>
+                    
+                    <div style="text-align: center; margin-top: 30px;">
+                        <a href="#" class="btn btn-primary btn-large">Buy Now - $197</a>
+                        <p style="margin-top: 15px;"><strong>Total Value: $6,982</strong></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="section section-light">
+        <div class="container">
+            <h2 style="text-align: center;">Frequently Asked Questions</h2>
+            
+            <div class="faq-container">
+                <div class="faq-item">
+                    <div class="faq-question">How does this compare to hiring an agency directly?</div>
+                    <div class="faq-answer">
+                        <p>My agency charges $5,000-$20,000 for the exact same strategic process you're getting with Brand Alchemy Mastery. The difference is that I've automated the discovery and strategy creation through our proprietary AI system, allowing me to deliver the same quality at a fraction of the cost.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question">Will this really work for my specific industry?</div>
+                    <div class="faq-answer">
+                        <p>Absolutely. I've successfully applied the Brand Alchemy methodology across diverse service industries. The process adapts to your specific business while maintaining the core strategic elements that make brands successful.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question">How custom is the Brand Strategy Formula really?</div>
+                    <div class="faq-answer">
+                        <p>Each Brand Strategy Formula is completely unique to your business. The AI system conducts a thorough interview tailored to your industry, audience, and goals, then generates a comprehensive strategy document specific to your situation.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2025 Elementsist. All Rights Reserved.</p>
+            <p style="margin-top: 10px; font-size: 14px;">
+                <a href="#" style="color: var(--color-gold);">Privacy Policy</a> | 
+                <a href="#" style="color: var(--color-gold);">Terms of Service</a>
+            </p>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script>
+        // Before/After Slider Functionality
+        class BeforeAfterSlider {
+            constructor(element) {
+                this.container = element;
+                this.handle = element.querySelector('.slider-handle');
+                this.button = element.querySelector('.slider-button');
+                this.beforeImage = element.querySelector('.slider-before');
+                
+                this.isDragging = false;
+                this.init();
+            }
+            
+            init() {
+                // Mouse events
+                this.handle.addEventListener('mousedown', this.startDrag.bind(this));
+                this.button.addEventListener('mousedown', this.startDrag.bind(this));
+                
+                // Touch events
+                this.handle.addEventListener('touchstart', this.startDrag.bind(this));
+                this.button.addEventListener('touchstart', this.startDrag.bind(this));
+                
+                // Global events
+                document.addEventListener('mousemove', this.drag.bind(this));
+                document.addEventListener('touchmove', this.drag.bind(this));
+                document.addEventListener('mouseup', this.stopDrag.bind(this));
+                document.addEventListener('touchend', this.stopDrag.bind(this));
+            }
+            
+            startDrag(e) {
+                e.preventDefault();
+                this.isDragging = true;
+                this.container.style.cursor = 'ew-resize';
+            }
+            
+            drag(e) {
+                if (!this.isDragging) return;
+                
+                e.preventDefault();
+                
+                const clientX = e.type.includes('touch') ? e.touches[0].clientX : e.clientX;
+                const rect = this.container.getBoundingClientRect();
+                const x = clientX - rect.left;
+                const percentage = Math.max(0, Math.min(100, (x / rect.width) * 100));
+                
+                this.updateSlider(percentage);
+            }
+            
+            stopDrag() {
+                this.isDragging = false;
+                this.container.style.cursor = 'default';
+            }
+            
+            updateSlider(percentage) {
+                this.handle.style.left = `${percentage}%`;
+                this.beforeImage.style.clipPath = `inset(0 ${100 - percentage}% 0 0)`;
+            }
+        }
+        
+        // FAQ Accordion Functionality
+        class FAQAccordion {
+            constructor() {
+                this.init();
+            }
+            
+            init() {
+                const questions = document.querySelectorAll('.faq-question');
+                questions.forEach(question => {
+                    question.addEventListener('click', this.toggleFAQ.bind(this));
+                });
+            }
+            
+            toggleFAQ(e) {
+                const question = e.target;
+                const answer = question.nextElementSibling;
+                const isActive = question.classList.contains('active');
+                
+                // Close all other FAQs
+                document.querySelectorAll('.faq-question').forEach(q => {
+                    q.classList.remove('active');
+                    q.nextElementSibling.classList.remove('show');
+                });
+                
+                // Toggle current FAQ
+                if (!isActive) {
+                    question.classList.add('active');
+                    answer.classList.add('show');
+                }
+            }
+        }
+        
+        // Smooth Scrolling for CTA buttons
+        function initSmoothScrolling() {
+            const links = document.querySelectorAll('a[href^="#"]');
+            links.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const targetId = this.getAttribute('href');
+                    const targetElement = document.querySelector(targetId);
+                    if (targetElement) {
+                        targetElement.scrollIntoView({
+                            behavior: 'smooth',
+                            block: 'start'
+                        });
+                    }
+                });
+            });
+        }
+        
+        // Initialize everything when DOM is loaded
+        document.addEventListener('DOMContentLoaded', function() {
+            // Initialize Before/After Slider
+            const sliderElement = document.getElementById('beforeAfterSlider');
+            if (sliderElement) {
+                new BeforeAfterSlider(sliderElement);
+            }
+            
+            // Initialize FAQ Accordion
+            new FAQAccordion();
+            
+            // Initialize Smooth Scrolling
+            initSmoothScrolling();
+            
+            // Header scroll effect
+            let lastScrollTop = 0;
+            const header = document.querySelector('.header');
+            
+            window.addEventListener('scroll', function() {
+                const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+                
+                if (scrollTop > lastScrollTop && scrollTop > 100) {
+                    // Scrolling down
+                    header.style.transform = 'translateY(-100%)';
+                } else {
+                    // Scrolling up
+                    header.style.transform = 'translateY(0)';
+                }
+                lastScrollTop = scrollTop;
+            });
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,786 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Branding Transformation - Elementsist</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Ibarra+Real+Nova:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --black: #000000;
+            --white: #ffffff;
+            --dark-midnight: #0d1e32;
+            --bright-gray: #edeced;
+            --goldenrod: #d29230;
+        }
+        
+        body, html {
+            font-family: Helvetica, Arial, sans-serif;
+            font-size: 18px;
+            line-height: 1.6;
+            color: var(--black);
+            background-color: var(--white);
+            margin: 0;
+            padding: 0;
+        }
+        
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Ibarra Real Nova', serif;
+            font-weight: 500;
+            line-height: 1.2;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+        
+        .section-title {
+            text-align: center;
+            font-size: 42px;
+            margin-bottom: 20px;
+            position: relative;
+            display: inline-block;
+        }
+        
+        .section-subtitle {
+            text-align: center;
+            font-size: 24px;
+            max-width: 800px;
+            margin: 0 auto 60px;
+            color: #555;
+        }
+        
+        .transformation-title {
+            font-size: 32px;
+            margin: 60px 0 30px;
+            text-align: center;
+            position: relative;
+        }
+        
+        .transformation-title:after {
+            content: "";
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 3px;
+            background: linear-gradient(to right, #c79a3c, #f9d77f, #c79a3c);
+        }
+        
+        .branding-layers {
+            margin: 80px 0;
+            position: relative;
+        }
+        
+        .brand-level {
+            display: flex;
+            align-items: center;
+            margin-bottom: 100px;
+            position: relative;
+        }
+        
+        .level-number {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            background-color: var(--black);
+            color: var(--goldenrod);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 30px;
+            font-weight: bold;
+            border: 2px solid var(--goldenrod);
+            position: absolute;
+            left: 0;
+            top: 0;
+            z-index: 2;
+        }
+        
+        .level-content {
+            margin-left: 40px;
+            flex: 1;
+            background-color: white;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            overflow: hidden;
+            position: relative;
+        }
+        
+        .level-header {
+            background-color: var(--black);
+            color: white;
+            padding: 20px 30px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        
+        .level-title {
+            font-size: 24px;
+            margin: 0;
+        }
+        
+        .level-badge {
+            background-color: var(--goldenrod);
+            color: white;
+            font-weight: bold;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 14px;
+        }
+        
+        .comparison-container {
+            position: relative;
+            width: 100%;
+        }
+        
+        .before-after-container {
+            position: relative;
+            width: 100%;
+            height: 400px;
+            overflow: hidden;
+        }
+        
+        .before, .after {
+            position: absolute;
+            top: 0;
+            height: 100%;
+            width: 100%;
+            overflow: hidden;
+        }
+        
+        .before {
+            left: 0;
+            z-index: 1;
+            width: 50%;
+        }
+        
+        .after {
+            right: 0;
+            z-index: 2;
+        }
+        
+        .before img, .after img {
+            position: absolute;
+            top: 0;
+            height: 100%;
+            width: 100%;
+            object-fit: cover;
+        }
+        
+        .slider {
+            position: absolute;
+            width: 4px;
+            height: 100%;
+            background-color: var(--goldenrod);
+            left: 50%;
+            top: 0;
+            z-index: 3;
+            cursor: ew-resize;
+        }
+        
+        .slider-button {
+            position: absolute;
+            width: 40px;
+            height: 40px;
+            background-color: var(--goldenrod);
+            border-radius: 50%;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 4;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: ew-resize;
+        }
+        
+        .slider-button:after {
+            content: "↔";
+            color: white;
+            font-weight: bold;
+        }
+        
+        .before-label, .after-label {
+            position: absolute;
+            top: 20px;
+            color: white;
+            background-color: rgba(0,0,0,0.7);
+            padding: 5px 10px;
+            border-radius: 4px;
+            font-weight: bold;
+            font-size: 14px;
+            z-index: 5;
+        }
+        
+        .before-label {
+            left: 20px;
+        }
+        
+        .after-label {
+            right: 20px;
+        }
+        
+        .level-footer {
+            padding: 30px;
+            display: flex;
+            gap: 40px;
+        }
+        
+        .impact-column {
+            flex: 1;
+        }
+        
+        .column-title {
+            font-weight: bold;
+            font-size: 18px;
+            margin-bottom: 15px;
+            color: var(--dark-midnight);
+            display: flex;
+            align-items: center;
+        }
+        
+        .negative-icon, .positive-icon {
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            margin-right: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 14px;
+        }
+        
+        .negative-icon {
+            background-color: #ff5252;
+            color: white;
+        }
+        
+        .positive-icon {
+            background-color: var(--goldenrod);
+            color: white;
+        }
+        
+        .impact-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        
+        .impact-list li {
+            padding-left: 20px;
+            position: relative;
+            margin-bottom: 10px;
+        }
+        
+        .impact-list li:before {
+            content: "•";
+            position: absolute;
+            left: 0;
+            color: #555;
+        }
+        
+        .negative-list li:before {
+            color: #ff5252;
+        }
+        
+        .positive-list li:before {
+            color: var(--goldenrod);
+        }
+        
+        .connection-line {
+            position: absolute;
+            left: 40px;
+            top: 80px;
+            width: 2px;
+            height: calc(100% - 80px);
+            background: linear-gradient(to bottom, var(--goldenrod), var(--dark-midnight));
+            z-index: 1;
+        }
+        
+        .cta-container {
+            background-color: var(--dark-midnight);
+            color: white;
+            padding: 40px;
+            border-radius: 12px;
+            margin: 80px auto;
+            max-width: 900px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .cta-container:before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url('/api/placeholder/1000/500');
+            background-size: cover;
+            background-position: center;
+            opacity: 0.1;
+            z-index: 1;
+        }
+        
+        .cta-content {
+            position: relative;
+            z-index: 2;
+        }
+        
+        .cta-title {
+            font-size: 32px;
+            margin-bottom: 20px;
+        }
+        
+        .cta-text {
+            margin-bottom: 30px;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .cta-button {
+            display: inline-block;
+            background-color: var(--goldenrod);
+            color: white;
+            font-weight: bold;
+            padding: 15px 40px;
+            border-radius: 6px;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            font-size: 18px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        .cta-button:hover {
+            background-color: #b87a25;
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+        }
+        
+        .comprehensive-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+            margin: 60px 0;
+        }
+        
+        .branding-element {
+            background-color: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.05);
+            transition: all 0.3s ease;
+        }
+        
+        .branding-element:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+        }
+        
+        .element-image {
+            height: 200px;
+            overflow: hidden;
+        }
+        
+        .element-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: all 0.5s ease;
+        }
+        
+        .branding-element:hover .element-image img {
+            transform: scale(1.1);
+        }
+        
+        .element-content {
+            padding: 20px;
+        }
+        
+        .element-title {
+            font-weight: bold;
+            font-size: 20px;
+            margin-bottom: 10px;
+        }
+        
+        .element-description {
+            font-size: 16px;
+            color: #555;
+        }
+        
+        /* For the final section */
+        .brand-layers-wrap {
+            position: relative;
+            background-color: var(--bright-gray);
+            padding: 60px 0;
+            margin: 80px 0;
+        }
+        
+        .metal-text {
+            background: linear-gradient(to right, #c79a3c, #f9d77f, #c79a3c);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            display: inline-block;
+        }
+        
+        /* Responsive adjustments */
+        @media (max-width: 992px) {
+            .level-footer {
+                flex-direction: column;
+                gap: 20px;
+            }
+            
+            .comprehensive-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .level-number {
+                width: 60px;
+                height: 60px;
+                font-size: 24px;
+            }
+            
+            .level-content {
+                margin-left: 30px;
+            }
+            
+            .connection-line {
+                left: 30px;
+            }
+            
+            .comprehensive-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        @media (max-width: 576px) {
+            .transformation-title {
+                font-size: 28px;
+            }
+            
+            .level-header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 10px;
+            }
+            
+            .before-after-container {
+                height: 300px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2 class="section-title">Branding Is <span class="metal-text">So Much More</span> Than You Think</h2>
+        <p class="section-subtitle">Most business owners have a limited understanding of what branding truly is. Discover the multiple dimensions that create a brand that magnetically attracts your ideal clients.</p>
+        
+        <div class="branding-layers">
+            <div class="connection-line"></div>
+            
+            <!-- Level 1: Logo & Visual Identity -->
+            <div class="brand-level">
+                <div class="level-number">1</div>
+                <div class="level-content">
+                    <div class="level-header">
+                        <h3 class="level-title">Logo & Visual Identity</h3>
+                        <div class="level-badge">SURFACE LEVEL</div>
+                    </div>
+                    
+                    <div class="comparison-container">
+                        <div class="before-after-container">
+                            <div class="before">
+                                <div class="before-label">AMATEUR</div>
+                                <img src="old-lallabee.png" alt="">
+                            </div>
+                            <div class="after">
+                                <div class="after-label">STRATEGIC</div>
+                                <img src="new-lallabee.png" alt="">
+                            </div>
+                            <div class="slider">
+                                <div class="slider-button"></div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="level-footer">
+                        <div class="impact-column">
+                            <div class="column-title">
+                                <div class="negative-icon">✗</div>
+                                Where Most Businesses Stop
+                            </div>
+                            <ul class="impact-list negative-list">
+                                <li>Generic logo that looks like competitors</li>
+                                <li>Inconsistent colors across platforms</li>
+                                <li>Typography that doesn't convey your values</li>
+                                <li>Visuals chosen based only on personal preference</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="impact-column">
+                            <div class="column-title">
+                                <div class="positive-icon">✓</div>
+                                The Aurum Agent Difference
+                            </div>
+                            <ul class="impact-list positive-list">
+                                <li>Strategic color psychology that triggers emotions</li>
+                                <li>Typography that reflects your brand's personality</li>
+                                <li>Visual elements with purpose and meaning</li>
+                                <li>Consistent application across all touchpoints</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Level 2: Website & Digital Presence -->
+            <div class="brand-level">
+                <div class="level-number">2</div>
+                <div class="level-content">
+                    <div class="level-header">
+                        <h3 class="level-title">Website & Digital Presence</h3>
+                        <div class="level-badge">FUNCTIONAL LEVEL</div>
+                    </div>
+                    
+                    <div class="comparison-container">
+                        <div class="before-after-container">
+                            <div class="before">
+                                <div class="before-label">AMATEUR</div>
+                                <img src="/api/placeholder/800/400" alt="">
+                            </div>
+                            <div class="after">
+                                <div class="after-label">STRATEGIC</div>
+                                <img src="/api/placeholder/800/400" alt="">
+                            </div>
+                            <div class="slider">
+                                <div class="slider-button"></div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="level-footer">
+                        <div class="impact-column">
+                            <div class="column-title">
+                                <div class="negative-icon">✗</div>
+                                Common Digital Presence Issues
+                            </div>
+                            <ul class="impact-list negative-list">
+                                <li>Website focuses on features instead of benefits</li>
+                                <li>Messaging that doesn't address client pain points</li>
+                                <li>Inconsistent presence across social platforms</li>
+                                <li>Poor user journey that fails to convert visitors</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="impact-column">
+                            <div class="column-title">
+                                <div class="positive-icon">✓</div>
+                                The Aurum Agent Difference
+                            </div>
+                            <ul class="impact-list positive-list">
+                                <li>Strategic site structure that guides visitors to action</li>
+                                <li>Cohesive digital presence across all platforms</li>
+                                <li>High-converting copy that speaks directly to ideal clients</li>
+                                <li>User experience that builds trust and authority</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Level 3: Messaging & Voice -->
+            <div class="brand-level">
+                <div class="level-number">3</div>
+                <div class="level-content">
+                    <div class="level-header">
+                        <h3 class="level-title">Messaging & Brand Voice</h3>
+                        <div class="level-badge">STRATEGIC LEVEL</div>
+                    </div>
+                    
+                    <div class="comparison-container">
+                        <div class="before-after-container">
+                            <div class="before">
+                                <div class="before-label">AMATEUR</div>
+                                <img src="/api/placeholder/800/400" alt="">
+                            </div>
+                            <div class="after">
+                                <div class="after-label">STRATEGIC</div>
+                                <img src="/api/placeholder/800/400" alt="">
+                            </div>
+                            <div class="slider">
+                                <div class="slider-button"></div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="level-footer">
+                        <div class="impact-column">
+                            <div class="column-title">
+                                <div class="negative-icon">✗</div>
+                                Where Branding Often Fails
+                            </div>
+                            <ul class="impact-list negative-list">
+                                <li>Generic messaging that sounds like everyone else</li>
+                                <li>Inconsistent tone across different platforms</li>
+                                <li>Value proposition that fails to differentiate</li>
+                                <li>Communication that focuses on you instead of clients</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="impact-column">
+                            <div class="column-title">
+                                <div class="positive-icon">✓</div>
+                                The Aurum Agent Difference
+                            </div>
+                            <ul class="impact-list positive-list">
+                                <li>Distinctive voice that reflects your unique personality</li>
+                                <li>Messaging that addresses specific client pain points</li>
+                                <li>Brand story that creates emotional connection</li>
+                                <li>Consistent communication that builds recognition</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <h3 class="transformation-title">The Complete Brand Experience</h3>
+        <p style="text-align: center; max-width: 800px; margin: 0 auto 40px;">Beyond logos, websites, and messaging, true branding encompasses every touchpoint of your business. The Brand Alchemy Formula delivers a comprehensive strategy that transforms how clients perceive and experience your brand.</p>
+        
+        <div class="comprehensive-grid">
+            <div class="branding-element">
+                <div class="element-image">
+                    <img src="/api/placeholder/400/300" alt="Brand positioning">
+                </div>
+                <div class="element-content">
+                    <div class="element-title">Strategic Positioning</div>
+                    <div class="element-description">How your brand stands in relation to competitors and in the minds of your ideal clients.</div>
+                </div>
+            </div>
+            
+            <div class="branding-element">
+                <div class="element-image">
+                    <img src="/api/placeholder/400/300" alt="Client experience">
+                </div>
+                <div class="element-content">
+                    <div class="element-title">Client Experience</div>
+                    <div class="element-description">The consistent experience clients have at each step of their journey with your business.</div>
+                </div>
+            </div>
+            
+            <div class="branding-element">
+                <div class="element-image">
+                    <img src="/api/placeholder/400/300" alt="Brand archetype">
+                </div>
+                <div class="element-content">
+                    <div class="element-title">Brand Archetype</div>
+                    <div class="element-description">The personality framework that guides how your brand shows up and connects with your audience.</div>
+                </div>
+            </div>
+            
+            <div class="branding-element">
+                <div class="element-image">
+                    <img src="/api/placeholder/400/300" alt="Brand storytelling">
+                </div>
+                <div class="element-content">
+                    <div class="element-title">Brand Storytelling</div>
+                    <div class="element-description">The narrative that weaves through all your content and creates emotional connections.</div>
+                </div>
+            </div>
+            
+            <div class="branding-element">
+                <div class="element-image">
+                    <img src="/api/placeholder/400/300" alt="Market positioning">
+                </div>
+                <div class="element-content">
+                    <div class="element-title">Market Positioning</div>
+                    <div class="element-description">How you price, package, and present your offerings relative to the market.</div>
+                </div>
+            </div>
+            
+            <div class="branding-element">
+                <div class="element-image">
+                    <img src="/api/placeholder/400/300" alt="Community building">
+                </div>
+                <div class="element-content">
+                    <div class="element-title">Community Building</div>
+                    <div class="element-description">The ecosystem you create around your brand that fosters loyalty and advocacy.</div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- CTA Section -->
+    <div class="cta-container">
+        <div class="cta-content">
+            <h3 class="cta-title">Ready to transform your invisible business into a magnetic brand?</h3>
+            <p class="cta-text">Get your custom Brand Alchemy Formula today and discover how the Aurum Agent can deliver the same comprehensive brand strategy that agencies charge $5,000-$20,000 for — in just 3 hours.</p>
+            <a href="#order-section" class="cta-button">CREATE MY BRAND STRATEGY</a>
+            <p style="margin-top: 20px; font-size: 16px;">One-time payment of $197 or 3 payments of $65</p>
+        </div>
+    </div>
+    
+    <script>
+        // This would be replaced with actual functionality in production
+        document.addEventListener('DOMContentLoaded', function() {
+            // Get all sliders
+            const allSliders = document.querySelectorAll('.before-after-container');
+            
+            allSliders.forEach(container => {
+                const slider = container.querySelector('.slider');
+                const sliderButton = container.querySelector('.slider-button');
+                const beforeDiv = container.querySelector('.before');
+                
+                const moveSlider = function(e) {
+                    const containerRect = container.getBoundingClientRect();
+                    const percentPosition = Math.max(0, Math.min(100, ((e.clientX - containerRect.left) / containerRect.width) * 100));
+                    
+                    beforeDiv.style.width = `${percentPosition}%`;
+                    slider.style.left = `${percentPosition}%`;
+                };
+                
+                const activateSlider = function(e) {
+                    document.addEventListener('mousemove', moveSlider);
+                    document.addEventListener('mouseup', function() {
+                        document.removeEventListener('mousemove', moveSlider);
+                    });
+                };
+                
+                [slider, sliderButton].forEach(element => {
+                    element.addEventListener('mousedown', activateSlider);
+                    
+                    // For touch devices
+                    element.addEventListener('touchstart', function(e) {
+                        e.preventDefault();
+                        document.addEventListener('touchmove', function(e) {
+                            const touch = e.touches[0];
+                            const simulatedEvent = {
+                                clientX: touch.clientX
+                            };
+                            moveSlider(simulatedEvent);
+                        });
+                        
+                        document.addEventListener('touchend', function() {
+                            document.removeEventListener('touchmove', moveSlider);
+                        });
+                    });
+                });
+            });
+        });
+    </script>
+</body>
+</html>
